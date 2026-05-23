@@ -572,14 +572,14 @@ flowchart TD
       <div class="etapa-card-num" style="background: #9c46e0;">4</div>
       <div class="etapa-card-info">
         <h3>Apresenta&ccedil;&atilde;o de Condi&ccedil;&otilde;es</h3>
-        <p>Avalia&ccedil;&atilde;o presencial, pre&ccedil;o R$350, simula&ccedil;&atilde;o com avatar facial</p>
+        <p>Avalia&ccedil;&atilde;o presencial ou online, pre&ccedil;o R$350, simula&ccedil;&atilde;o com avatar facial</p>
       </div>
     </div>
     <div class="etapa-card-body">
       <pre class="mermaid">
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#9c46e0', 'primaryTextColor': '#fff', 'primaryBorderColor': '#7c3aed', 'lineColor': '#9c46e0', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
 flowchart TD
-    A["&#128203; Explicar processo\nde avalia&ccedil;&atilde;o presencial\n+ simula&ccedil;&atilde;o com avatar facial"] --> B["&#128176; Apresentar valor:\nAvalia&ccedil;&atilde;o R$350\n&mdash; s&oacute; agenda ap&oacute;s pagamento"]
+    A["&#128203; Explicar avalia&ccedil;&atilde;o\npresencial ou online\n+ simula&ccedil;&atilde;o com avatar facial"] --> B["&#128176; Apresentar valor:\nAvalia&ccedil;&atilde;o R$350\n&mdash; s&oacute; agenda ap&oacute;s pagamento"]
     B --> C{"&#128172; Rea&ccedil;&atilde;o do\npaciente?"}
     C -->|"OK / Aceita"| D["&#10145;&#65039; Ir para Etapa 5"]
     C -->|"Pergunta pre&ccedil;o\ndo procedimento"| E["&#128172; 'A Dra. Renata vai\ndetalhar na avalia&ccedil;&atilde;o,\npois depende do seu caso'"]
@@ -619,7 +619,7 @@ flowchart TD
     B -->|"Online"| D["&#128187; Agendar avalia&ccedil;&atilde;o\nonline por v&iacute;deo"]
     C --> E["&#128203; Enviar formul&aacute;rio\nde pr&eacute;-cadastro\nautomaticamente"]
     D --> E
-    E --> F["&#128176; Aguardar confirma&ccedil;&atilde;o\nde pagamento\n&mdash; humano processa"]
+    E --> F["&#128176; Gerar link de pagamento\nvia InfinitePay (Pix ou cart&atilde;o)\n&mdash; enviar direto na conversa"]
     F --> G{"Pagamento\nconfirmado?"}
     G -->|"Sim"| H["&#9989; Mover lead para\n'Agendou' no pipeline"]
     G -->|"N&atilde;o &mdash; n&atilde;o pagou"| I["&#128336; Lembrete de pagamento\nap&oacute;s 24h"]
@@ -688,7 +688,7 @@ flowchart TD
       <pre class="mermaid">
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#22c55e', 'primaryTextColor': '#fff', 'primaryBorderColor': '#16a34a', 'lineColor': '#22c55e', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
 flowchart TD
-    A{"&#128202; Classifica&ccedil;&atilde;o\nfinal?"} -->|"QUENTE &mdash; hor&aacute;rio comercial"| B["&#128105;&#8205;&#9877;&#65039; 'Sua avalia&ccedil;&atilde;o est&aacute;\nconfirmada com a Dra. Renata!\n[atendente] vai te enviar\no link de pagamento.'"]
+    A{"&#128202; Classifica&ccedil;&atilde;o\nfinal?"} -->|"QUENTE &mdash; hor&aacute;rio comercial"| B["&#128105;&#8205;&#9877;&#65039; 'Sua avalia&ccedil;&atilde;o est&aacute;\nconfirmada com a Dra. Renata!\nJ&aacute; te enviei o link\nde pagamento.'"]
     A -->|"QUENTE &mdash; fora do hor&aacute;rio"| C["&#128336; 'Nosso hor&aacute;rio &eacute; de\n8h &agrave;s 17h30. Uma atendente\nvai entrar em contato no\npr&oacute;ximo dia &uacute;til.'"]
     A -->|"MORNO"| D["&#128232; Ativar sequ&ecirc;ncia\nde nutri&ccedil;&atilde;o com conte&uacute;do\neducativo sobre o procedimento"]
     A -->|"FRIO"| E["&#128075; Despedida cordial\nportas abertas\nagendar reengajamento"]
@@ -829,7 +829,7 @@ flowchart TD
       <div class="etapa-card-num" style="background: #1e293b;">S</div>
       <div class="etapa-card-info">
         <h3>Diagrama de Arquitetura</h3>
-        <p>7 sistemas integrados: WhatsApp, IA, CRM, Base de Conhecimento, STT, Calendar, Notifica&ccedil;&otilde;es</p>
+        <p>8 sistemas integrados: WhatsApp, IA, CRM, Base de Conhecimento, STT, Calendar, InfinitePay, Notifica&ccedil;&otilde;es</p>
       </div>
     </div>
     <div class="etapa-card-body">
@@ -844,6 +844,7 @@ flowchart TB
     MOTOR <-->|"consulta"| KB["&#128218; Base de Conhecimento\nprocedimentos, antes/depois,\ndepoimentos, FAQs"]
     MOTOR <-->|"CRUD"| CRM["&#128190; CRM / Banco de Dados\ncontatos, leads,\nhist&oacute;rico, pipeline"]
     MOTOR <-->|"disponibilidade"| CALENDAR["&#128197; Google Calendar\nagenda da Dra. Renata"]
+    MOTOR <-->|"pagamento"| INFINITEPAY["&#128176; InfinitePay API\nPix + Cart&atilde;o at&eacute; 12x\nwebhook confirma&ccedil;&atilde;o"]
 
     CRM -->|"alerts"| NOTIF["&#128276; Notifica&ccedil;&otilde;es"]
     NOTIF --> ATENDENTE["&#128105;&#8205;&#9877;&#65039; WhatsApp\nAtendente"]
@@ -857,6 +858,7 @@ flowchart TB
     style KB fill:#f59e0b,stroke:#d97706,color:#fff
     style CRM fill:#607cf9,stroke:#4a64d4,color:#fff
     style CALENDAR fill:#4285F4,stroke:#1a73e8,color:#fff
+    style INFINITEPAY fill:#22c55e,stroke:#16a34a,color:#fff
     style NOTIF fill:#ef4444,stroke:#dc2626,color:#fff
     style ATENDENTE fill:#1e293b,stroke:#607cf9,color:#fff
     style LIVIA fill:#1e293b,stroke:#607cf9,color:#fff
