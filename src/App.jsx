@@ -55,8 +55,8 @@ const IconX = () => (
 
 const summaryCards = [
   { id: 'hoje', num: '01', title: 'Hoje (as is)', desc: 'Como funciona o atendimento hoje — ferramentas, processos e gargalos identificados', color: '#9c46e0' },
-  { id: 'sistema', num: '02', title: 'O Sistema (to be)', desc: '4 modulos que transformam o atendimento: Agente IA, Prova Social, CRM e Agendamento', color: '#607cf9' },
-  { id: 'spec', num: '03', title: 'Referencia Tecnica', desc: 'Regras de negocio, integracoes, decisoes tomadas e pendentes, checklist de materiais', color: '#9c46e0' },
+  { id: 'sistema', num: '02', title: 'O Sistema (to be)', desc: '4 módulos que transformam o atendimento: Agente IA, Prova Social, CRM e Agendamento', color: '#607cf9' },
+  { id: 'spec', num: '03', title: 'Referência Técnica', desc: 'Regras de negócio, integrações, decisões tomadas e pendentes, checklist de materiais', color: '#9c46e0' },
   { id: 'crono', num: '04', title: 'Cronograma', desc: '8 semanas de projeto + 21 dias de hyper-care com demos semanais', color: '#543285' },
 ]
 
@@ -66,7 +66,7 @@ function Summary({ onNavigate }) {
       <div className="summary-inner">
         <div className="summary-header">
           <h1>Agente Comercial IA + CRM Inteligente</h1>
-          <p>Documentacao tecnica completa do projeto — atendimento 24/7 via WhatsApp com playbook da Dra. Renata, pipeline visual e follow-up automatizado</p>
+          <p>Documentação técnica completa do projeto — atendimento 24/7 via WhatsApp com playbook da Dra. Renata, pipeline visual e follow-up automatizado</p>
         </div>
         <div className="summary-grid">
           {summaryCards.map(card => (
@@ -74,7 +74,7 @@ function Summary({ onNavigate }) {
               <div className="summary-card-num" style={{ color: card.color }}>{card.num}</div>
               <h3>{card.title}</h3>
               <p>{card.desc}</p>
-              <span className="summary-card-arrow" style={{ color: card.color }}>Ver secao &rarr;</span>
+              <span className="summary-card-arrow" style={{ color: card.color }}>Ver seção &rarr;</span>
             </button>
           ))}
         </div>
@@ -102,7 +102,7 @@ function App() {
   const tabs = [
     { id: 'hoje', label: 'Hoje (as is)', icon: <IconAlertCircle /> },
     { id: 'sistema', label: 'O Sistema (to be)', icon: <IconLayout /> },
-    { id: 'spec', label: 'Referencia Tecnica', icon: <IconFileText /> },
+    { id: 'spec', label: 'Referência Técnica', icon: <IconFileText /> },
     { id: 'crono', label: 'Cronograma', icon: <IconCalendar /> },
   ]
 
@@ -133,7 +133,7 @@ function App() {
                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
               </svg>
-              Inicio
+              Início
             </button>
             {tabs.map(tab => (
               <button
@@ -160,7 +160,7 @@ function App() {
 
       <footer className="app-footer">
         <img src="/logo-labrego.png" alt="Labrego IA" style={{ height: 16, opacity: 0.4 }} />
-        <span>Documentacao Tecnica — Dra. Renata Souza — v1.0 — 23 de maio de 2026</span>
+        <span>Documentação Técnica — Dra. Renata Souza — v1.0 — 23 de maio de 2026</span>
       </footer>
 
       {showTop && (

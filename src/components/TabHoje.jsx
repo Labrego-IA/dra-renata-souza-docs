@@ -1,30 +1,30 @@
 import { PageHeader, SectionHero } from './Logo'
 
 const tools = [
-  { abbr: 'IG', color: '#9c46e0', name: 'Instagram (2 perfis)', desc: 'Captacao de leads via trafego pago e organico. Gera 20 a 30 leads por dia (~600+ por mes). Um perfil direciona para WhatsApp, outro fica no Instagram DM para captacao de pacientes-modelo para cursos.' },
-  { abbr: 'WA', color: '#25D366', name: 'WhatsApp Comercial', desc: '1 numero para todo o comercial. Atendente (1 pessoa) conduz vendas seguindo orientacoes da Dra. Renata. Horario 8h-17h30. Problema: demora nas respostas causa 70% de perda por tempo de espera.' },
-  { abbr: 'WA', color: '#374151', name: 'WhatsApp Tecnico', desc: 'Numero separado para pos-procedimento e suporte clinico. Atendimento humano exclusivo com a Livia. Nao sera automatizado — IA e exclusivamente comercial.' },
-  { abbr: 'CRM', color: '#607cf9', name: 'CRM (atual)', desc: 'Registro de leads e follow-up. Usado para retornar a leads frios, mas follow-up e inconsistente — nao e feito com constancia.' },
-  { abbr: 'S', color: '#543285', name: 'Sante', desc: 'Sistema proprietario de agendamento de clinicas. Verificar se possui API para integracao. Se nao, Google Calendar sera fonte primaria.' },
-  { abbr: '$', color: '#b45309', name: 'Banco Infinity', desc: 'Maquininha de pagamento. Verificar integracao para link de pagamento via API. Alternativa: Mercado Pago ou Asaas.' },
+  { abbr: 'IG', color: '#9c46e0', name: 'Instagram (2 perfis)', desc: 'Captação de leads via tráfego pago e orgânico. Gera 20 a 30 leads por dia (~600+ por mês). Um perfil direciona para WhatsApp, outro fica no Instagram DM para captação de pacientes-modelo para cursos.' },
+  { abbr: 'WA', color: '#25D366', name: 'WhatsApp Comercial', desc: '1 número para todo o comercial. Atendente (1 pessoa) conduz vendas seguindo orientações da Dra. Renata. Horário 8h-17h30. Problema: demora nas respostas causa 70% de perda por tempo de espera.' },
+  { abbr: 'WA', color: '#374151', name: 'WhatsApp Técnico', desc: 'Número separado para pós-procedimento e suporte clínico. Atendimento humano exclusivo com a Lívia. Não será automatizado — IA é exclusivamente comercial.' },
+  { abbr: 'CRM', color: '#607cf9', name: 'CRM (atual)', desc: 'Registro de leads e follow-up. Usado para retornar a leads frios, mas follow-up é inconsistente — não é feito com constância.' },
+  { abbr: 'S', color: '#543285', name: 'Santé', desc: 'Sistema proprietário de agendamento de clínicas. Verificar se possui API para integração. Se não, Google Calendar será fonte primária.' },
+  { abbr: '$', color: '#b45309', name: 'Banco Infinity', desc: 'Maquininha de pagamento. Verificar integração para link de pagamento via API. Alternativa: Mercado Pago ou Asaas.' },
 ]
 
 const painPoints = [
-  { title: 'Demora na resposta', desc: 'Leads ficam horas esperando resposta. 70% dos pacientes sao perdidos por tempo de espera — procuram outra clinica.', icon: 'clock' },
-  { title: 'Conversao menor que 1%', desc: 'Dos 600+ leads mensais, menos de 1% converte. Perda estimada de R$ 15.000/mes (minimo 3 vendas de R$ 5K que nao acontecem).', icon: 'x-circle' },
-  { title: 'Turnover no comercial', desc: 'Ciclo repetitivo: treina atendente, fica bom, sai. Recomeca do zero a cada vez, sem retencao de conhecimento na empresa.', icon: 'user-minus' },
-  { title: 'Abordagem sem persuasao', desc: 'Atendimento funciona como "tirada de pedido" — o paciente ja queria, nao houve venda construida. Sem playbook estruturado.', icon: 'file-minus' },
-  { title: 'Expertise concentrada', desc: 'Quando a Dra. Renata atende pessoalmente, 80% agendam. Quando e a atendente, cai drasticamente. Impossivel escalar sem transferir esse conhecimento.', icon: 'lock' },
-  { title: 'Follow-up inconsistente', desc: 'Leads frios nao sao reativados sistematicamente. Sem processo automatizado, leads que nao fecham na primeira conversa se perdem.', icon: 'alert-triangle' },
+  { title: 'Demora na resposta', desc: 'Leads ficam horas esperando resposta. 70% dos pacientes são perdidos por tempo de espera — procuram outra clínica.', icon: 'clock' },
+  { title: 'Conversão menor que 1%', desc: 'Dos 600+ leads mensais, menos de 1% converte. Perda estimada de R$ 15.000/mês (mínimo 3 vendas de R$ 5K que não acontecem).', icon: 'x-circle' },
+  { title: 'Turnover no comercial', desc: 'Ciclo repetitivo: treina atendente, fica bom, sai. Recomeça do zero a cada vez, sem retenção de conhecimento na empresa.', icon: 'user-minus' },
+  { title: 'Abordagem sem persuasão', desc: 'Atendimento funciona como "tirada de pedido" — o paciente já queria, não houve venda construída. Sem playbook estruturado.', icon: 'file-minus' },
+  { title: 'Expertise concentrada', desc: 'Quando a Dra. Renata atende pessoalmente, 80% agendam. Quando é a atendente, cai drasticamente. Impossível escalar sem transferir esse conhecimento.', icon: 'lock' },
+  { title: 'Follow-up inconsistente', desc: 'Leads frios não são reativados sistematicamente. Sem processo automatizado, leads que não fecham na primeira conversa se perdem.', icon: 'alert-triangle' },
 ]
 
 const clientJourney = [
-  { title: 'Lead ve anuncio no Instagram', desc: 'Lead ve anuncio de rinomodelacao ou harmonizacao facial (95% trafego pago). Clica e e direcionado para WhatsApp da clinica ou fica no Instagram DM.' },
-  { title: 'Atendente recebe a mensagem', desc: 'Atendente comercial (1 pessoa, 8h-17h30) recebe a mensagem. Identifica a dor do paciente — giba, ponta do nariz, olheira, labios, botox.' },
-  { title: 'Envia fotos e explica beneficios', desc: 'Envia fotos de antes/depois similares ao caso do paciente. Explica beneficios e especialidades da Dra. Renata. Conduz para agendamento de avaliacao.' },
-  { title: 'Pagamento da avaliacao', desc: 'Paciente paga avaliacao (R$ 350) — so entra na agenda apos pagamento. Recebe formulario de pre-cadastro (anamnese via sistema juridico).' },
-  { title: 'Lembrete e avaliacao', desc: 'Lembrete 1 dia antes (ate 9h) + confirmacao as 17h30. Avaliacao com Dra. Renata — presencial inclui avatar facial (simulacao), online nao.' },
-  { title: 'Fechamento', desc: 'Fechamento do procedimento e agendamento da cirurgia/procedimento. Taxa de conversao presencial: ~90% apos a avaliacao.' },
+  { title: 'Lead vê anúncio no Instagram', desc: 'Lead vê anúncio de rinomodelação ou harmonização facial (95% tráfego pago). Clica e é direcionado para WhatsApp da clínica ou fica no Instagram DM.' },
+  { title: 'Atendente recebe a mensagem', desc: 'Atendente comercial (1 pessoa, 8h-17h30) recebe a mensagem. Identifica a dor do paciente — giba, ponta do nariz, olheira, lábios, botox.' },
+  { title: 'Envia fotos e explica benefícios', desc: 'Envia fotos de antes/depois similares ao caso do paciente. Explica benefícios e especialidades da Dra. Renata. Conduz para agendamento de avaliação.' },
+  { title: 'Pagamento da avaliação', desc: 'Paciente paga avaliação (R$ 350) — só entra na agenda após pagamento. Recebe formulário de pré-cadastro (anamnese via sistema jurídico).' },
+  { title: 'Lembrete e avaliação', desc: 'Lembrete 1 dia antes (até 9h) + confirmação às 17h30. Avaliação com Dra. Renata — presencial inclui avatar facial (simulação), online não.' },
+  { title: 'Fechamento', desc: 'Fechamento do procedimento e agendamento da cirurgia/procedimento. Taxa de conversão presencial: ~90% após a avaliação.' },
 ]
 
 const icons = {
@@ -117,23 +117,23 @@ function JourneyStep({ num, title, desc }) {
 export default function TabHoje() {
   return (
     <section className="page">
-      <PageHeader tag="Cenario atual (AS-IS)" />
+      <PageHeader tag="Cenário atual (AS-IS)" />
 
       <SectionHero
         title="Como funciona o atendimento hoje"
-        description="Ferramentas, processos, gargalos e a jornada completa do paciente — do anuncio ate a avaliacao com a Dra. Renata"
+        description="Ferramentas, processos, gargalos e a jornada completa do paciente — do anúncio até a avaliação com a Dra. Renata"
         style={{ background: 'linear-gradient(135deg, #543285 0%, #9c46e0 50%, #607cf9 100%)' }}
       />
 
       <div className="metric-row">
-        <MetricCard num="600+" label="leads/mes" />
-        <MetricCard num="<1%" label="conversao atual" />
+        <MetricCard num="600+" label="leads/mês" />
+        <MetricCard num="<1%" label="conversão atual" />
         <MetricCard num="70%" label="perdidos por demora" />
         <MetricCard num="R$250k" label="faturamento/mes" />
       </div>
 
       <h3 className="sub-title">As ferramentas de hoje</h3>
-      <p style={{ marginBottom: 16, color: '#666' }}>Cada parte do processo mora num lugar diferente. O atendimento depende de 1 pessoa no horario comercial.</p>
+      <p style={{ marginBottom: 16, color: '#666' }}>Cada parte do processo mora num lugar diferente. O atendimento depende de 1 pessoa no horário comercial.</p>
 
       <div className="tool-cards-grid">
         {tools.map((tool, i) => (
@@ -149,7 +149,7 @@ export default function TabHoje() {
       </div>
 
       <h3 className="sub-title">A jornada do paciente hoje</h3>
-      <p style={{ marginBottom: 16, color: '#666' }}>Do anuncio no Instagram ate o fechamento do procedimento — cada etapa com seus gargalos:</p>
+      <p style={{ marginBottom: 16, color: '#666' }}>Do anúncio no Instagram até o fechamento do procedimento — cada etapa com seus gargalos:</p>
       <div className="journey-steps">
         {clientJourney.map((step, i) => (
           <JourneyStep key={i} num={i + 1} {...step} />
@@ -158,7 +158,7 @@ export default function TabHoje() {
 
       <div className="highlight-box">
         <p>
-          <strong>Resumo:</strong> A clinica recebe 600+ leads por mes, mas perde a maioria por demora na resposta e falta de follow-up. O conhecimento comercial esta concentrado na Dra. Renata — quando ela atende, 80% agendam; quando e a atendente, a conversao cai drasticamente. O atendimento so funciona no horario comercial (8h-17h30) e nao existe processo automatizado de reativacao de leads frios.
+          <strong>Resumo:</strong> A clínica recebe 600+ leads por mês, mas perde a maioria por demora na resposta e falta de follow-up. O conhecimento comercial está concentrado na Dra. Renata — quando ela atende, 80% agendam; quando é a atendente, a conversão cai drasticamente. O atendimento só funciona no horário comercial (8h-17h30) e não existe processo automatizado de reativação de leads frios.
         </p>
       </div>
     </section>

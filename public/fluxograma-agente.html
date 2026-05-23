@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fluxograma — Agente Comercial IA | Dra. Renata Souza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+  :root {
+    --roxo-principal: #607cf9;
+    --roxo-vibrante: #9c46e0;
+    --roxo-escuro: #543285;
+    --preto: #0a0a0a;
+  }
+
+  html { scroll-behavior: smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f8f9fc;
+    color: #1a1a2e;
+    min-height: 100vh;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--preto) 0%, var(--roxo-escuro) 100%);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-left { display: flex; align-items: center; gap: 20px; }
+  .header-logo img { height: 28px; filter: brightness(0) invert(1); }
+
+  .header-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .header-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .header-nav {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .header-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    transition: all 0.15s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .header-nav a:hover {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+  }
+
+  .header-nav a.active {
+    background: var(--roxo-principal);
+    color: #fff;
+    border-color: var(--roxo-principal);
+  }
+
+  .header-nav-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    margin-right: 4px;
+  }
+
+  .header-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .main { padding: 40px 48px; max-width: 1200px; margin: 0 auto; }
+
+  .section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--preto);
+    margin-bottom: 6px;
+  }
+
+  .section-subtitle {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 32px;
+  }
+
+  /* ========== MACRO FLOW ========== */
+  .macro-flow {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px 24px;
+    margin-bottom: 48px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #e8e8f0;
+  }
+
+  .macro-steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 20px 0;
+  }
+
+  .macro-step { text-align: center; padding: 0 6px; }
+
+  .macro-step a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.15s ease;
+  }
+
+  .macro-step a:hover { transform: translateY(-3px); }
+
+  .macro-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    box-shadow: 0 3px 12px rgba(96,124,249,0.3);
+  }
+
+  .macro-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+    max-width: 85px;
+    line-height: 1.3;
+    min-height: 30px;
+  }
+
+  .macro-arrow {
+    font-size: 18px;
+    color: #ccc;
+    margin: 0 2px;
+    margin-top: 16px;
+  }
+
+  /* ========== ETAPA CARD ========== */
+  .etapa-card {
+    background: #fff;
+    border-radius: 16px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #e8e8f0;
+    overflow: hidden;
+    scroll-margin-top: 90px;
+  }
+
+  .etapa-card-header {
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid #f0f0f5;
+  }
+
+  .etapa-card-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .etapa-card-info { flex: 1; }
+
+  .etapa-card-info h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+
+  .etapa-card-info p {
+    font-size: 13px;
+    color: #888;
+    margin-top: 2px;
+  }
+
+  .etapa-card-body {
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  .mermaid {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mermaid svg { max-width: 100%; height: auto; }
+
+  /* Edge labels — readable text */
+  .mermaid .edgeLabel span {
+    color: #333 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    background: #e8e8f0 !important;
+    padding: 3px 8px !important;
+    border-radius: 5px !important;
+    display: inline-block !important;
+  }
+
+  /* Hide only the duplicate SVG background rect */
+  .mermaid .labelBkg {
+    fill: transparent !important;
+  }
+
+  /* Make clickable nodes have cursor pointer */
+  .mermaid .clickable { cursor: pointer !important; }
+
+  /* ========== BACK TO TOP ========== */
+  .back-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 200;
+    display: flex;
+    gap: 8px;
+  }
+
+  .back-top a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    background: var(--roxo-principal);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 24px;
+    box-shadow: 0 4px 16px rgba(96,124,249,0.4);
+    transition: all 0.15s ease;
+  }
+
+  .back-top a:hover {
+    background: var(--roxo-vibrante);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(156,70,224,0.4);
+  }
+
+  .back-top .btn-icon {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  /* ========== LEGEND ========== */
+  .legend-bar {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin: 24px 0 48px;
+    padding: 16px 24px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e8e8f0;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+  }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    text-align: center;
+    padding: 32px;
+    border-top: 1px solid #e8e8f0;
+  }
+
+  .footer img { height: 20px; margin-bottom: 8px; }
+  .footer p { font-size: 12px; color: #999; }
+
+
+  /* ========== PRINT ========== */
+  @media print {
+    body { background: #fff; }
+    .header { position: static; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .etapa-card { break-inside: avoid; box-shadow: none; }
+    .macro-flow { break-inside: avoid; }
+    .main { padding: 20px; }
+    .back-top { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY NAVIGATION HEADER -->
+<div class="header" id="topo">
+  <div class="header-left">
+    <div class="header-logo"><img src="/logo-labrego.png" alt="Labrego IA"></div>
+    <div class="header-divider"></div>
+    <div class="header-title">Fluxograma &mdash; Agente Comercial IA | Dra. Renata Souza</div>
+  </div>
+  <div class="header-nav">
+    <span class="header-nav-label">Etapas:</span>
+    <a href="#etapa-0" title="Recep&ccedil;&atilde;o">0</a>
+    <a href="#etapa-1" title="Identifica&ccedil;&atilde;o">1</a>
+    <a href="#etapa-2" title="Sauda&ccedil;&atilde;o">2</a>
+    <a href="#etapa-3" title="Prova Social">3</a>
+    <a href="#etapa-4" title="Condi&ccedil;&otilde;es">4</a>
+    <a href="#etapa-5" title="Agendamento">5</a>
+    <a href="#etapa-6" title="Classifica&ccedil;&atilde;o">6</a>
+    <a href="#etapa-7" title="Handoff">7</a>
+    <span class="header-nav-label" style="margin-left: 8px;">Paralelos:</span>
+    <a href="#paralelo-a" title="Perguntas">A</a>
+    <a href="#paralelo-b" title="Humano">B</a>
+    <a href="#paralelo-c" title="Retorno">C</a>
+  </div>
+</div>
+
+<!-- FLOATING BACK BUTTON -->
+<div class="back-top">
+  <a href="#topo" title="Voltar ao topo"><span class="btn-icon">&uarr;</span> Topo</a>
+</div>
+
+<div class="main">
+
+  <!-- ========== MACRO OVERVIEW ========== -->
+  <div class="section-title">Vis&atilde;o Macro do Fluxo</div>
+  <div class="section-subtitle">Clique em qualquer etapa para navegar diretamente</div>
+
+  <div class="macro-flow" id="macro">
+    <div class="macro-steps">
+      <div class="macro-step"><a href="#etapa-0"><div class="macro-circle" style="background: #607cf9;">0</div><div class="macro-label">Recep&ccedil;&atilde;o</div></a></div>
+      <div class="macro-arrow">&rarr;</div>
+      <div class="macro-step"><a href="#etapa-1"><div class="macro-circle" style="background: #607cf9;">1</div><div class="macro-label">Identifica&ccedil;&atilde;o</div></a></div>
+      <div class="macro-arrow">&rarr;</div>
+      <div class="macro-step"><a href="#etapa-2"><div class="macro-circle" style="background: #607cf9;">2</div><div class="macro-label">Sauda&ccedil;&atilde;o e Dor</div></a></div>
+      <div class="macro-arrow">&rarr;</div>
+      <div class="macro-step"><a href="#etapa-3"><div class="macro-circle" style="background: #9c46e0;">3</div><div class="macro-label">Prova Social</div></a></div>
+      <div class="macro-arrow">&rarr;</div>
+      <div class="macro-step"><a href="#etapa-4"><div class="macro-circle" style="background: #9c46e0;">4</div><div class="macro-label">Condi&ccedil;&otilde;es</div></a></div>
+      <div class="macro-arrow">&rarr;</div>
+      <div class="macro-step"><a href="#etapa-5"><div class="macro-circle" style="background: #9c46e0;">5</div><div class="macro-label">Agendamento</div></a></div>
+      <div class="macro-arrow">&rarr;</div>
+      <div class="macro-step"><a href="#etapa-6"><div class="macro-circle" style="background: #ef4444;">6</div><div class="macro-label">Classifica&ccedil;&atilde;o</div></a></div>
+      <div class="macro-arrow">&rarr;</div>
+      <div class="macro-step"><a href="#etapa-7"><div class="macro-circle" style="background: #22c55e;">7</div><div class="macro-label">Handoff</div></a></div>
+    </div>
+  </div>
+
+  <div class="legend-bar">
+    <div class="legend-item"><div class="legend-dot" style="background: #607cf9;"></div>Etapa do fluxo</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #f59e0b; border-radius: 50%;"></div>Ponto de decis&atilde;o</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #ef4444;"></div>Lead Quente</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #f59e0b;"></div>Lead Morno</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #3b82f6;"></div>Lead Frio</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #22c55e;"></div>Finaliza&ccedil;&atilde;o / Clic&aacute;vel</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #fb923c;"></div>Processo Paralelo</div>
+  </div>
+
+  <!-- ========== ETAPA 0 ========== -->
+  <div class="etapa-card" id="etapa-0">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #607cf9;">0</div>
+      <div class="etapa-card-info">
+        <h3>Recep&ccedil;&atilde;o da Mensagem</h3>
+        <p>Identificar tipo de m&iacute;dia, transcrever &aacute;udio e verificar hor&aacute;rio comercial</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#607cf9', 'primaryTextColor': '#fff', 'primaryBorderColor': '#4a64d4', 'lineColor': '#607cf9', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart TD
+    A["&#128233; Mensagem recebida\nno WhatsApp Business API"] --> B{"Tipo de\nm&iacute;dia?"}
+    B -->|"&#128172; Texto"| C["Processar via LLM\n&mdash; extrair inten&ccedil;&atilde;o e dados"]
+    B -->|"&#127908; &Aacute;udio"| D["Transcrever via STT\n&mdash; Whisper / Google"]
+    B -->|"&#128247; Imagem"| E["Reconhecer foto do\nrosto/nariz &mdash; usar como\ncontexto da conversa"]
+    B -->|"&#127909; V&iacute;deo"| F["N&atilde;o processa v&iacute;deo\n&mdash; pedir texto ou &aacute;udio"]
+    B -->|"&#127775; Sticker"| G["Ignorar sticker\n&mdash; registro passivo"]
+    D --> D2{"Transcri&ccedil;&atilde;o\nOK?"}
+    D2 -->|"Sim"| C
+    D2 -->|"Falhou"| D3["Pedir que envie\npor texto"]
+    D3 --> C
+    E --> H
+    C --> H{"&#9200; Hor&aacute;rio\ncomercial?"}
+    G --> H
+    H -->|"8h &agrave;s 17h30"| I["&#9989; flag = true\nAtendimento normal"]
+    H -->|"Fora do hor&aacute;rio"| J["&#128336; flag = false\nIA responde 24/7"]
+    I --> K["&#10145;&#65039; Ir para Etapa 1"]
+    J --> K
+
+    click K href "#etapa-1"
+
+    style A fill:#607cf9,stroke:#4a64d4,color:#fff
+    style K fill:#607cf9,stroke:#4a64d4,color:#fff
+    style I fill:#dcfce7,stroke:#16a34a,color:#166534
+    style J fill:#fff7ed,stroke:#d97706,color:#92400e
+      </pre>
+    </div>
+  </div>
+
+  <!-- ========== ETAPA 1 ========== -->
+  <div class="etapa-card" id="etapa-1">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #607cf9;">1</div>
+      <div class="etapa-card-info">
+        <h3>Identifica&ccedil;&atilde;o do Contato</h3>
+        <p>Buscar no banco, definir se &eacute; novo, retorno ou reengajamento</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#607cf9', 'primaryTextColor': '#fff', 'primaryBorderColor': '#4a64d4', 'lineColor': '#607cf9', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart TD
+    A["&#128269; Buscar n&uacute;mero\nno banco de dados"] --> B{"Contato\nexiste?"}
+    B -->|"N&atilde;o"| C["&#128221; Criar registro no CRM\npipeline 'Novo Lead'"]
+    B -->|"Sim"| D["&#128203; Carregar contexto\n&mdash; nome, &uacute;ltima conversa,\nprocedimento, classifica&ccedil;&atilde;o"]
+    D --> E{"&#128336; Conversa ativa\nmenos de 7 dias?"}
+    E -->|"Sim"| F["&#128260; Retomar da etapa\nonde parou"]
+    E -->|"N&atilde;o"| G{"Contato\nantigo?"}
+    G -->|"Sim"| H["&#128260; Reengajamento baseado\nna classifica&ccedil;&atilde;o anterior"]
+    G -->|"Novo retorno"| I["&#127381; Tratar como\nnovo lead"]
+
+    C --> J["&#10145;&#65039; Ir para Etapa 2"]
+    I --> J
+    H --> J
+    F --> K["&#10145;&#65039; Retomar etapa salva"]
+
+    click J href "#etapa-2"
+
+    style A fill:#607cf9,stroke:#4a64d4,color:#fff
+    style J fill:#607cf9,stroke:#4a64d4,color:#fff
+    style K fill:#9c46e0,stroke:#7c3aed,color:#fff
+      </pre>
+    </div>
+  </div>
+
+  <!-- ========== ETAPA 2 ========== -->
+  <div class="etapa-card" id="etapa-2">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #607cf9;">2</div>
+      <div class="etapa-card-info">
+        <h3>Sauda&ccedil;&atilde;o e Identifica&ccedil;&atilde;o da Dor</h3>
+        <p>Apresentar-se, entender a queixa e mapear o procedimento adequado</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#607cf9', 'primaryTextColor': '#fff', 'primaryBorderColor': '#4a64d4', 'lineColor': '#607cf9', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart TD
+    A["&#128075; Sauda&ccedil;&atilde;o da IA\nTom semi-formal, apresenta-se\npelo nome escolhido"] --> B["&#128172; Perguntar o que\nincomoda na apar&ecirc;ncia"]
+    B --> C{"Paciente\nidentificou a dor?"}
+    C -->|"Sim"| D{"Qual a\nqueixa?"}
+    C -->|"N&atilde;o &mdash; vago"| E["&#128161; Fazer perguntas\ndirecionadas para\nidentificar a &aacute;rea"]
+    E --> D
+    D -->|"&#128067; Giba (corcova nasal)"| F["Mapear: Rinomodeliza&ccedil;&atilde;o\nou Rinoplastia"]
+    D -->|"&#128067; Ponta do nariz"| F
+    D -->|"&#128064; Olheiras"| G["Mapear: Preenchimento\nde olheiras"]
+    D -->|"&#128139; L&aacute;bios"| H["Mapear: Preenchimento\nlabial"]
+    D -->|"&#128137; Botox"| I["Mapear: Toxina\nbotul&iacute;nica"]
+    D -->|"&#10024; Full face"| J["Mapear: Harmoniza&ccedil;&atilde;o\nfacial completa"]
+    D -->|"&#128172; Outro"| K["Registrar queixa\ne mapear procedimento"]
+
+    F --> L["&#128203; Coletar: nome,\nqueixa espec&iacute;fica,\nprocedimento de interesse"]
+    G --> L
+    H --> L
+    I --> L
+    J --> L
+    K --> L
+
+    L --> M["&#10145;&#65039; Ir para Etapa 3"]
+
+    click M href "#etapa-3"
+
+    style A fill:#607cf9,stroke:#4a64d4,color:#fff
+    style M fill:#9c46e0,stroke:#7c3aed,color:#fff
+      </pre>
+    </div>
+  </div>
+
+  <!-- ========== ETAPA 3 ========== -->
+  <div class="etapa-card" id="etapa-3">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #9c46e0;">3</div>
+      <div class="etapa-card-info">
+        <h3>Constru&ccedil;&atilde;o de Valor (Prova Social)</h3>
+        <p>Antes/depois contextualizados, depoimentos e diferenciais da Dra. Renata</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#9c46e0', 'primaryTextColor': '#fff', 'primaryBorderColor': '#7c3aed', 'lineColor': '#9c46e0', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart TD
+    A["&#128270; Selecionar fotos\nantes/depois que combinem\ncom a queixa do paciente"] --> B{"Queixa\nmapeada?"}
+    B -->|"Giba / Nariz"| C["&#128247; 2-3 fotos de\nrinomodeliza&ccedil;&atilde;o"]
+    B -->|"Olheiras"| D["&#128247; 2-3 fotos de\npreenchimento de olheiras"]
+    B -->|"L&aacute;bios"| E["&#128247; 2-3 fotos de\npreenchimento labial"]
+    B -->|"Botox / Full face"| F["&#128247; 2-3 fotos de\nharmoniza&ccedil;&atilde;o facial"]
+    C --> G["&#128172; Enviar fotos com\ncontexto: NUNCA no in&iacute;cio,\nAPENAS ap&oacute;s entender a dor"]
+    D --> G
+    E --> G
+    F --> G
+    G --> H["&#11088; Enviar depoimentos\nde pacientes reais\nrelacionados ao caso"]
+    H --> I["&#128105;&#8205;&#9877;&#65039; Explicar especializa&ccedil;&atilde;o\ne diferenciais da\nDra. Renata Souza"]
+    I --> J["&#128293; Construir desejo\nANTES de mencionar pre&ccedil;o"]
+    J --> K["&#10145;&#65039; Ir para Etapa 4"]
+
+    click K href "#etapa-4"
+
+    style A fill:#9c46e0,stroke:#7c3aed,color:#fff
+    style K fill:#9c46e0,stroke:#7c3aed,color:#fff
+    style J fill:#fef2f2,stroke:#ef4444,color:#991b1b
+      </pre>
+    </div>
+  </div>
+
+  <!-- ========== ETAPA 4 ========== -->
+  <div class="etapa-card" id="etapa-4">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #9c46e0;">4</div>
+      <div class="etapa-card-info">
+        <h3>Apresenta&ccedil;&atilde;o de Condi&ccedil;&otilde;es</h3>
+        <p>Avalia&ccedil;&atilde;o presencial, pre&ccedil;o R$350, simula&ccedil;&atilde;o com avatar facial</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#9c46e0', 'primaryTextColor': '#fff', 'primaryBorderColor': '#7c3aed', 'lineColor': '#9c46e0', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart TD
+    A["&#128203; Explicar processo\nde avalia&ccedil;&atilde;o presencial\n+ simula&ccedil;&atilde;o com avatar facial"] --> B["&#128176; Apresentar valor:\nAvalia&ccedil;&atilde;o R$350\n&mdash; s&oacute; agenda ap&oacute;s pagamento"]
+    B --> C{"&#128172; Rea&ccedil;&atilde;o do\npaciente?"}
+    C -->|"OK / Aceita"| D["&#10145;&#65039; Ir para Etapa 5"]
+    C -->|"Pergunta pre&ccedil;o\ndo procedimento"| E["&#128172; 'A Dra. Renata vai\ndetalhar na avalia&ccedil;&atilde;o,\npois depende do seu caso'"]
+    C -->|"D&uacute;vida t&eacute;cnica"| F["&#128218; Responder da\nbase de conhecimento"]
+    C -->|"Achou caro / Hesita"| G["&#128161; Refor&ccedil;ar valor:\navatar facial, expertise,\nresultados personalizados"]
+    E --> H{"Convenceu?"}
+    F --> H
+    G --> H
+    H -->|"Sim"| D
+    H -->|"N&atilde;o &mdash; quer pensar"| I["&#128308; Classificar MORNO\nIr para Etapa 6"]
+
+    click D href "#etapa-5"
+    click I href "#etapa-6"
+
+    style A fill:#9c46e0,stroke:#7c3aed,color:#fff
+    style D fill:#9c46e0,stroke:#7c3aed,color:#fff
+    style I fill:#fffbeb,stroke:#f59e0b,color:#92400e
+      </pre>
+    </div>
+  </div>
+
+  <!-- ========== ETAPA 5 ========== -->
+  <div class="etapa-card" id="etapa-5">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #9c46e0;">5</div>
+      <div class="etapa-card-info">
+        <h3>Agendamento</h3>
+        <p>Google Calendar, formul&aacute;rio de pr&eacute;-cadastro, lembretes autom&aacute;ticos</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#9c46e0', 'primaryTextColor': '#fff', 'primaryBorderColor': '#7c3aed', 'lineColor': '#9c46e0', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart TD
+    A["&#128197; Verificar agenda\nGoogle Calendar"] --> B{"Tipo de\navalia&ccedil;&atilde;o?"}
+    B -->|"Presencial\n(prefer&ecirc;ncia)"| C["&#127970; Agendar consulta\npresencial no consult&oacute;rio"]
+    B -->|"Online"| D["&#128187; Agendar avalia&ccedil;&atilde;o\nonline por v&iacute;deo"]
+    C --> E["&#128203; Enviar formul&aacute;rio\nde pr&eacute;-cadastro\nautomaticamente"]
+    D --> E
+    E --> F["&#128176; Aguardar confirma&ccedil;&atilde;o\nde pagamento\n&mdash; humano processa"]
+    F --> G{"Pagamento\nconfirmado?"}
+    G -->|"Sim"| H["&#9989; Mover lead para\n'Agendou' no pipeline"]
+    G -->|"N&atilde;o &mdash; n&atilde;o pagou"| I["&#128336; Lembrete de pagamento\nap&oacute;s 24h"]
+    I --> J{"Pagou?"}
+    J -->|"Sim"| H
+    J -->|"N&atilde;o"| K["&#128308; Classificar MORNO\nIr para Etapa 6"]
+    H --> L["&#128276; Configurar lembretes:\n1 dia antes (at&eacute; 9h)\n+ reconfirma&ccedil;&atilde;o &agrave;s 17h30"]
+    L --> M["&#10145;&#65039; Ir para Etapa 6"]
+
+    click K href "#etapa-6"
+    click M href "#etapa-6"
+
+    style A fill:#9c46e0,stroke:#7c3aed,color:#fff
+    style H fill:#dcfce7,stroke:#16a34a,color:#166534
+    style M fill:#ef4444,stroke:#dc2626,color:#fff
+    style K fill:#fffbeb,stroke:#f59e0b,color:#92400e
+      </pre>
+    </div>
+  </div>
+
+  <!-- ========== ETAPA 6 ========== -->
+  <div class="etapa-card" id="etapa-6">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #ef4444;">6</div>
+      <div class="etapa-card-info">
+        <h3>Classifica&ccedil;&atilde;o e Encaminhamento</h3>
+        <p>3 classifica&ccedil;&otilde;es com a&ccedil;&otilde;es autom&aacute;ticas distintas no CRM</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ef4444', 'primaryTextColor': '#fff', 'primaryBorderColor': '#dc2626', 'lineColor': '#94a3b8', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart TD
+    A{"&#128202; Classifica&ccedil;&atilde;o\ndo lead?"} -->|"Interessado + aceitou avalia&ccedil;&atilde;o\n+ link de pagamento enviado"| Q["&#128308; QUENTE"]
+    A -->|"Interessado mas hesitante,\nquer pensar, n&atilde;o fechou"| M["&#128992; MORNO"]
+    A -->|"Sem interesse ap&oacute;s\n2 tentativas"| F["&#128309; FRIO"]
+
+    Q --> QA["&#128241; Notificar humano\nimediatamente\n&#128190; Mover card no CRM\npara 'Link Enviado'"]
+    M --> MA["&#128197; Ativar sequ&ecirc;ncia\nde follow-up\n&#128190; Mover card para\n'Em Nutri&ccedil;&atilde;o'"]
+    F --> FA["&#128197; Agendar reengajamento\nD+3, D+7\n&#128190; Mover card para\n'Reengajamento'"]
+
+    QA --> Z["&#10145;&#65039; Ir para Etapa 7"]
+    MA --> Z
+    FA --> Z
+
+    click Z href "#etapa-7"
+
+    style Q fill:#fef2f2,stroke:#ef4444,color:#991b1b
+    style M fill:#fffbeb,stroke:#f59e0b,color:#92400e
+    style F fill:#eff6ff,stroke:#3b82f6,color:#1e40af
+    style Z fill:#22c55e,stroke:#16a34a,color:#fff
+      </pre>
+    </div>
+  </div>
+
+  <!-- ========== ETAPA 7 ========== -->
+  <div class="etapa-card" id="etapa-7">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #22c55e;">7</div>
+      <div class="etapa-card-info">
+        <h3>Handoff e Finaliza&ccedil;&atilde;o</h3>
+        <p>Mensagem contextualizada, salvar estado, notificar equipe</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#22c55e', 'primaryTextColor': '#fff', 'primaryBorderColor': '#16a34a', 'lineColor': '#22c55e', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart TD
+    A{"&#128202; Classifica&ccedil;&atilde;o\nfinal?"} -->|"QUENTE &mdash; hor&aacute;rio comercial"| B["&#128105;&#8205;&#9877;&#65039; 'Sua avalia&ccedil;&atilde;o est&aacute;\nconfirmada com a Dra. Renata!\n[atendente] vai te enviar\no link de pagamento.'"]
+    A -->|"QUENTE &mdash; fora do hor&aacute;rio"| C["&#128336; 'Nosso hor&aacute;rio &eacute; de\n8h &agrave;s 17h30. Uma atendente\nvai entrar em contato no\npr&oacute;ximo dia &uacute;til.'"]
+    A -->|"MORNO"| D["&#128232; Ativar sequ&ecirc;ncia\nde nutri&ccedil;&atilde;o com conte&uacute;do\neducativo sobre o procedimento"]
+    A -->|"FRIO"| E["&#128075; Despedida cordial\nportas abertas\nagendar reengajamento"]
+
+    B --> F["&#128276; Notificar humano\nimediatamente"]
+    C --> G["&#128190; Registrar para\ncontato no pr&oacute;ximo\ndia &uacute;til"]
+    F --> H["&#128190; Salvar estado final\n&mdash; dados, resumo da conversa,\nclassifica&ccedil;&atilde;o, pr&oacute;xima a&ccedil;&atilde;o"]
+    G --> H
+    D --> H
+    E --> H
+
+    H --> I["&#128066; Modo ESCUTA ativado"]
+    I -->|"Nova mensagem do paciente"| J["&#128260; Volta para Etapa 1"]
+
+    click J href "#etapa-1"
+
+    style I fill:#22c55e,stroke:#16a34a,color:#fff
+    style J fill:#607cf9,stroke:#4a64d4,color:#fff
+      </pre>
+    </div>
+  </div>
+
+  <!-- ========== PROCESSOS PARALELOS ========== -->
+  <div class="section-title" style="margin-top: 48px;">Processos Paralelos</div>
+  <div class="section-subtitle">Podem ocorrer em qualquer etapa, a qualquer momento da conversa</div>
+
+  <!-- PARALELO A -->
+  <div class="etapa-card" id="paralelo-a">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #fb923c;">A</div>
+      <div class="etapa-card-info">
+        <h3>Perguntas Durante o Fluxo</h3>
+        <p>Responder da base de conhecimento e retomar o fluxo</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#fb923c', 'primaryTextColor': '#fff', 'primaryBorderColor': '#ea580c', 'lineColor': '#fb923c', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart LR
+    A["&#10067; Paciente faz\npergunta"] --> B{"Tipo?"}
+    B --> C["&#128137; Detalhes do\nprocedimento\n&mdash; base de conhecimento"]
+    B --> D["&#128176; Pre&ccedil;o do\nprocedimento\n&mdash; 'Depende de cada\ncaso. A Dra. Renata\ndetalha na avalia&ccedil;&atilde;o.'"]
+    B --> E["&#9200; Tempo de\nrecupera&ccedil;&atilde;o\n&mdash; base de conhecimento"]
+    B --> F["&#128161; Pergunta que\na IA n&atilde;o sabe\n&mdash; 'A Dra. Renata vai\nte explicar na avalia&ccedil;&atilde;o'"]
+    B --> G["&#127970; Localiza&ccedil;&atilde;o /\nhor&aacute;rio da cl&iacute;nica\n&mdash; dados fixos"]
+    C --> H["&#8617;&#65039; Retomar fluxo\nde onde parou"]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+
+    style A fill:#fb923c,stroke:#ea580c,color:#fff
+    style H fill:#22c55e,stroke:#16a34a,color:#fff
+      </pre>
+    </div>
+  </div>
+
+  <!-- PARALELO B -->
+  <div class="etapa-card" id="paralelo-b">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #ef4444;">B</div>
+      <div class="etapa-card-info">
+        <h3>Paciente Pede Atendente Humano</h3>
+        <p>Aceitar IMEDIATAMENTE &mdash; nunca insistir</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#ef4444', 'primaryTextColor': '#fff', 'primaryBorderColor': '#dc2626', 'lineColor': '#ef4444', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart LR
+    A["&#128587; 'Quero falar\ncom algu&eacute;m'"] --> B["&#9989; Aceitar\nimediatamente\n'Vou transferir voc&ecirc;\npara nossa equipe!'"]
+    B --> C{"Tipo de\ndemanda?"}
+    C -->|"Comercial /\nAgendamento"| D["&#128276; Notificar\natendente humano"]
+    C -->|"P&oacute;s-procedimento /\nT&eacute;cnico"| E["&#128241; Direcionar para\nWhatsApp da L&iacute;via\n(suporte t&eacute;cnico)"]
+    D --> F{"&#9200; Hor&aacute;rio\ncomercial?"}
+    F -->|"Sim"| G["&#128994; Atendente j&aacute;\nfoi avisado"]
+    F -->|"N&atilde;o"| H["&#128336; Pr&oacute;ximo dia &uacute;til\n8h &agrave;s 17h30"]
+    G --> I["&#10145;&#65039; Etapa 6 &rarr; Etapa 7"]
+    H --> I
+    E --> I
+
+    click I href "#etapa-6"
+
+    style A fill:#ef4444,stroke:#dc2626,color:#fff
+    style G fill:#dcfce7,stroke:#16a34a,color:#166534
+    style H fill:#fff7ed,stroke:#d97706,color:#92400e
+    style I fill:#607cf9,stroke:#4a64d4,color:#fff
+      </pre>
+    </div>
+  </div>
+
+  <!-- PARALELO C -->
+  <div class="etapa-card" id="paralelo-c">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #8b5cf6;">C</div>
+      <div class="etapa-card-info">
+        <h3>Paciente Retorna Ap&oacute;s Inatividade</h3>
+        <p>Sequ&ecirc;ncia de follow-up: D+3, D+7, D+20, D+30, D+60</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#8b5cf6', 'primaryTextColor': '#fff', 'primaryBorderColor': '#7c3aed', 'lineColor': '#8b5cf6', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart TD
+    A["&#128260; Follow-up\nautom&aacute;tico"] --> B{"Tempo de\ninatividade?"}
+    B -->|"D+3"| C["&#128172; 1&ordm; follow-up\n&acirc;ngulo diferente,\nchamar pelo nome,\nreferenciar a dor"]
+    B -->|"D+7"| D["&#128247; 2&ordm; follow-up\nformato alternado\n(&aacute;udio/texto/foto)\nnovo conte&uacute;do"]
+    B -->|"D+20"| E["&#11088; 3&ordm; follow-up\nnovo depoimento\nde paciente similar"]
+    B -->|"D+30"| F["&#128161; 4&ordm; follow-up\nconte&uacute;do educativo\nsobre o procedimento"]
+    B -->|"D+60"| G["&#128075; Mensagem final\n&mdash; fechar lead se\nsem resposta"]
+
+    C --> H{"Respondeu?"}
+    D --> H
+    E --> H
+    F --> H
+    H -->|"Sim"| I["&#128260; Retomar fluxo\nchamar pelo nome,\nreferenciar dor espec&iacute;fica"]
+    H -->|"N&atilde;o"| J["&#128197; Pr&oacute;ximo follow-up\nna sequ&ecirc;ncia"]
+    G --> K["&#128683; Encerrar lead\nap&oacute;s 60 dias\nsem resposta"]
+
+    I --> L["&#10145;&#65039; Ir para Etapa 2"]
+
+    click L href "#etapa-2"
+
+    style A fill:#8b5cf6,stroke:#7c3aed,color:#fff
+    style K fill:#eff6ff,stroke:#3b82f6,color:#1e40af
+    style I fill:#dcfce7,stroke:#16a34a,color:#166534
+    style L fill:#607cf9,stroke:#4a64d4,color:#fff
+      </pre>
+    </div>
+  </div>
+
+  <!-- ========== ARQUITETURA ========== -->
+  <div class="section-title" style="margin-top: 48px;">Arquitetura de Integra&ccedil;&otilde;es</div>
+  <div class="section-subtitle">Stack tecnol&oacute;gico do Agente Comercial IA &mdash; Dra. Renata Souza</div>
+
+  <div class="etapa-card" id="arquitetura">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #1e293b;">S</div>
+      <div class="etapa-card-info">
+        <h3>Diagrama de Arquitetura</h3>
+        <p>7 sistemas integrados: WhatsApp, IA, CRM, Base de Conhecimento, STT, Calendar, Notifica&ccedil;&otilde;es</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#607cf9', 'primaryTextColor': '#fff', 'primaryBorderColor': '#4a64d4', 'lineColor': '#94a3b8', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart TB
+    PACIENTE["&#128100; Paciente &mdash; WhatsApp"] <-->|"mensagens"| WHATSAPP["&#128241; WhatsApp\nBusiness API"]
+    WHATSAPP -->|"webhook"| MOTOR["&#129504; Motor de IA\n&mdash; LLM + NLP"]
+    MOTOR -->|"respostas"| WHATSAPP
+
+    MOTOR <-->|"transcri&ccedil;&atilde;o"| STT["&#127908; Speech-to-Text\nWhisper / Google"]
+    MOTOR <-->|"consulta"| KB["&#128218; Base de Conhecimento\nprocedimentos, antes/depois,\ndepoimentos, FAQs"]
+    MOTOR <-->|"CRUD"| CRM["&#128190; CRM / Banco de Dados\ncontatos, leads,\nhist&oacute;rico, pipeline"]
+    MOTOR <-->|"disponibilidade"| CALENDAR["&#128197; Google Calendar\nagenda da Dra. Renata"]
+
+    CRM -->|"alerts"| NOTIF["&#128276; Notifica&ccedil;&otilde;es"]
+    NOTIF --> ATENDENTE["&#128105;&#8205;&#9877;&#65039; WhatsApp\nAtendente"]
+    NOTIF --> LIVIA["&#128187; WhatsApp\nL&iacute;via (t&eacute;cnico)"]
+    NOTIF --> FOLLOWUP["&#128197; Agendamento\nFollow-up / Reengajamento"]
+
+    style PACIENTE fill:#1e293b,stroke:#607cf9,color:#fff
+    style WHATSAPP fill:#25D366,stroke:#128C7E,color:#fff
+    style MOTOR fill:#9c46e0,stroke:#7c3aed,color:#fff
+    style STT fill:#607cf9,stroke:#4a64d4,color:#fff
+    style KB fill:#f59e0b,stroke:#d97706,color:#fff
+    style CRM fill:#607cf9,stroke:#4a64d4,color:#fff
+    style CALENDAR fill:#4285F4,stroke:#1a73e8,color:#fff
+    style NOTIF fill:#ef4444,stroke:#dc2626,color:#fff
+    style ATENDENTE fill:#1e293b,stroke:#607cf9,color:#fff
+    style LIVIA fill:#1e293b,stroke:#607cf9,color:#fff
+    style FOLLOWUP fill:#1e293b,stroke:#607cf9,color:#fff
+      </pre>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <img src="/logo-labrego.png" alt="Labrego IA">
+  <p>Documenta&ccedil;&atilde;o T&eacute;cnica &mdash; Dra. Renata Souza &mdash; v1.0 &mdash; 23 de maio de 2026</p>
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    securityLevel: 'loose',
+    flowchart: {
+      useMaxWidth: true,
+      htmlLabels: true,
+      curve: 'basis',
+      padding: 15,
+      nodeSpacing: 40,
+      rankSpacing: 50
+    },
+    theme: 'base'
+  });
+
+  // Highlight active nav item on scroll
+  const navLinks = document.querySelectorAll('.header-nav a');
+  const sections = document.querySelectorAll('.etapa-card');
+
+  function updateActiveNav() {
+    let current = '';
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 150) current = section.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav);
+  updateActiveNav();
+
+</script>
+
+</body>
+</html>
