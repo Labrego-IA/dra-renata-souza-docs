@@ -915,47 +915,6 @@ export default function TabSistema() {
         </table>
       </div>
 
-      {/* ─────────────────────────────────────────────────────────
-          SEÇÃO 14: PERMISSÕES DE ACESSO
-          ───────────────────────────────────────────────────────── */}
-
-      <h3 className="sub-title">Permissões de acesso</h3>
-      <div className="profile-grid">
-        <div className="profile-card admin">
-          <div className="profile-role">Admin</div>
-          <h4>Anderson Romanin</h4>
-          <p>Gestor comercial e administrativo</p>
-          <ul>
-            <li>Dashboard completo com todas as métricas</li>
-            <li>Relatórios e exportação de dados</li>
-            <li>Histórico de todas as conversas IA-paciente</li>
-            <li>Configurações do sistema e da IA</li>
-            <li>Gestão de usuários e permissões</li>
-          </ul>
-        </div>
-        <div className="profile-card admin">
-          <div className="profile-role">Admin</div>
-          <h4>Dra. Renata Souza</h4>
-          <p>Especialista em harmonização facial</p>
-          <ul>
-            <li>Acesso completo ao sistema</li>
-            <li>Validação e ajuste do playbook da IA</li>
-            <li>Aprovação de provas sociais no banco</li>
-            <li>Visualização de métricas e conversas</li>
-          </ul>
-        </div>
-        <div className="profile-card operational">
-          <div className="profile-role">Operacional</div>
-          <h4>Atendente Comercial</h4>
-          <p>Atendimento quando escalado pela IA</p>
-          <ul>
-            <li>Visualização de conversas atribuídas</li>
-            <li>Intervenção manual em conversas ativas</li>
-            <li>Processamento de pagamentos</li>
-            <li>Sem acesso a configurações ou relatórios</li>
-          </ul>
-        </div>
-      </div>
     </section>
   )
 }

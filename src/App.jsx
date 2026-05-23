@@ -78,11 +78,6 @@ function Summary({ onNavigate }) {
             </button>
           ))}
         </div>
-        <div className="summary-meta">
-          <span>v1.0</span>
-          <span>23 de maio de 2026</span>
-          <span>Anderson Romanin / Dra. Renata Souza</span>
-        </div>
       </div>
     </div>
   )
@@ -160,7 +155,7 @@ function App() {
 
       <footer className="app-footer">
         <img src="/logo-labrego.png" alt="Labrego IA" style={{ height: 16, opacity: 0.4 }} />
-        <span>Documentação Técnica — Dra. Renata Souza — v1.0 — 23 de maio de 2026</span>
+        <span>Documentação Técnica — Dra. Renata Souza</span>
       </footer>
 
       {showTop && (
