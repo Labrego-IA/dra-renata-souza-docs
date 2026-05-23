@@ -219,7 +219,7 @@ const conversationFlow = [
       {
         passo: '5.4',
         title: 'Informar sobre pagamento',
-        detail: '"Para confirmar sua avaliação na agenda da Dra. Renata, o próximo passo é o pagamento de R$ 350. Vou te passar para nossa equipe que vai te ajudar com isso." A IA NÃO processa pagamento — encaminha para atendente humano.',
+        detail: '"Para confirmar sua avaliação na agenda da Dra. Renata, o próximo passo é o pagamento de R$ 350. Vou te enviar o link agora!" A IA gera o link de pagamento automaticamente via API InfinitePay (Pix gratuito ou cartão até 12x) e envia direto no WhatsApp.',
       },
       {
         passo: '5.5',
@@ -235,8 +235,8 @@ const conversationFlow = [
     dataStored: ['tipo de avaliação escolhida (presencial/online)', 'data e horário agendados', 'status de pagamento (pendente/confirmado)', 'formulário de pré-cadastro enviado (sim/não)', 'lembretes programados', 'status do pipeline atualizado para "Agendou"'],
     dialogExample: {
       context: 'Paciente aceita agendar avaliação presencial',
-      iaResponse: '"Ótimo, [Nome]! A Dra. Renata tem disponibilidade na quinta-feira dia 29 às 14h ou na sexta dia 30 às 10h. Qual horário fica melhor para você? A clínica fica em Jundiaí-SP. Assim que você escolher, vou te passar para nossa equipe confirmar o agendamento."',
-      note: 'A IA oferece opções reais de agenda (consultando Google Calendar). Após a escolha, o atendente humano assume para processar o pagamento.',
+      iaResponse: '"Ótimo, [Nome]! A Dra. Renata tem disponibilidade na quinta-feira dia 29 às 14h ou na sexta dia 30 às 10h. Qual horário fica melhor para você? A clínica fica em Jundiaí-SP. Assim que você escolher, já te envio o link de pagamento!"',
+      note: 'A IA oferece opções reais de agenda (consultando Google Calendar). Após a escolha, gera e envia o link de pagamento via InfinitePay automaticamente.',
     },
   },
   {
@@ -258,7 +258,7 @@ const conversationFlow = [
       {
         passo: '6.3',
         title: 'Fechamento de pagamento',
-        detail: 'Quando o paciente está pronto para pagar a avaliação, a IA passa para o atendente humano finalizar a transação financeira. A IA nunca processa pagamentos.',
+        detail: 'Quando o paciente confirma o horário, a IA gera o link de pagamento via API InfinitePay (Pix gratuito ou cartão até 12x) e envia direto na conversa. Webhook confirma o pagamento em tempo real e atualiza o status no CRM.',
       },
       {
         passo: '6.4',
@@ -370,7 +370,7 @@ const mediaHandling = [
   {
     type: 'Áudio',
     received: 'Convertido para texto via Speech-to-Text (Whisper/Deepgram). Transcrição salva no banco. Se o paciente prefere áudio, a IA detecta essa preferência.',
-    sent: 'Text-to-Speech gera áudio com voz natural (a definir: genérica ou clonada da Dra. Renata). Usado quando o paciente demonstra preferência por áudio.',
+    sent: 'Text-to-Speech gera áudio com voz feminina natural e profissional. Usado quando o paciente demonstra preferência por áudio.',
     priority: 'Alta — diferencial competitivo',
   },
   {
@@ -399,7 +399,7 @@ const mediaHandling = [
   },
   {
     type: 'Localização',
-    received: 'Se o paciente enviar localização, a IA pode calcular distância da clínica e informar trajeto.',
+    received: 'A IA agradece e envia o endereço da clínica com link do Google Maps.',
     sent: 'Endereço da clínica em Jundiaí-SP, com link para Google Maps.',
     priority: 'Baixa',
   },
@@ -434,7 +434,7 @@ const guardrailsFaz = [
 
 const guardrailsNaoFaz = [
   'Não dá diagnóstico médico ou estético — sempre encaminha para avaliação com a Dra. Renata',
-  'Não realiza pagamento — passa para atendente humano para fechamento financeiro',
+  'Pagamento automatizado — gera link via InfinitePay (Pix ou cartão) e envia direto na conversa',
   'Não atende pós-procedimento — direciona para WhatsApp da Lívia (equipe técnica)',
   'Não atende reclamações — direciona para o número de pós-procedimento',
   'Não omite que é IA se perguntada diretamente — responde com honestidade e naturalidade',
@@ -478,32 +478,9 @@ const modules = [
   {
     num: '04', title: 'Agendamento', color: '#8b5cf6',
     desc: 'Google Calendar integrado com lembretes automáticos e formulário pré-cadastro',
-    items: ['Avaliação paga (R$ 350) — só agenda após pagamento', 'Presencial (preferência) ou online', 'Lembrete: 1 dia antes (até 9h) + re-confirmação 17h30', 'Formulário pré-cadastro enviado automaticamente', 'Verificação de integração com Santé']
+    items: ['Avaliação paga (R$ 350) — só agenda após pagamento', 'Presencial (preferência) ou online', 'Lembrete: 1 dia antes (até 9h) + re-confirmação 17h30', 'Formulário pré-cadastro enviado automaticamente', 'Integração com Google Calendar para disponibilidade']
   },
 ]
-
-const compareData = {
-  before: [
-    'Horas de espera para responder lead',
-    'Abordagem improvisada, sem padrão',
-    'Prova social manual, esquece de enviar',
-    'Agenda manual no Santé',
-    'Follow-up inconsistente',
-    'Zero visibilidade de métricas',
-    'Conhecimento na cabeça da Dra. Renata',
-    'Atendimento só no horário comercial',
-  ],
-  after: [
-    'Resposta instantânea 24/7',
-    'Playbook da Dra. Renata codificado na IA',
-    'Prova social automática por procedimento',
-    'Google Calendar integrado',
-    'Follow-up automático: 3, 7, 20, 30, 60 dias',
-    'Dashboard em tempo real',
-    'Conhecimento transferido permanentemente',
-    'Atendimento a qualquer horário',
-  ],
-}
 
 const personality = [
   { label: 'Nome', value: 'A definir pelo cliente (Anderson e Renata vão escolher)' },
@@ -527,7 +504,7 @@ const followUp = [
 const escalation = [
   { situation: 'Paciente pede para falar com humano', action: '"Vou transferir você para nossa equipe!" + notificar atendente via dashboard com contexto completo' },
   { situation: 'Reclamação / pós-procedimento', action: 'Direcionar para WhatsApp da Lívia (equipe técnica de pós-procedimento)' },
-  { situation: 'Fechamento de pagamento', action: 'Passar para atendente humano finalizar transação financeira' },
+  { situation: 'Fechamento de pagamento', action: 'IA gera link de pagamento via InfinitePay (Pix ou cartão até 12x) e envia direto na conversa' },
   { situation: 'Pergunta técnica sem resposta na base', action: '"A Dra. Renata vai te explicar em detalhes na avaliação"' },
   { situation: 'Paciente insatisfeito ou irritado', action: 'Transferir imediatamente para humano — nunca tentar resolver reclamação via IA' },
   { situation: 'Dúvida sobre medicamentos/contraindicações', action: '"Essa informação é muito importante e precisa ser avaliada pela Dra. Renata pessoalmente"' },
@@ -765,26 +742,6 @@ export default function TabSistema() {
       </div>
 
       {/* ─────────────────────────────────────────────────────────
-          SEÇÃO 6: ANTES x DEPOIS
-          ───────────────────────────────────────────────────────── */}
-
-      <h3 className="sub-title">O que muda (Antes x Depois)</h3>
-      <div className="compare-grid">
-        <div className="compare-before">
-          <h4>Antes</h4>
-          <ul>{compareData.before.map((item, i) => <li key={i}>{item}</li>)}</ul>
-        </div>
-        <div className="compare-after">
-          <h4>Depois</h4>
-          <ul>{compareData.after.map((item, i) => <li key={i}>{item}</li>)}</ul>
-        </div>
-      </div>
-
-      <div className="highlight-box">
-        <p><strong>Resultado esperado:</strong> Com resposta instantânea 24/7 e follow-up automatizado, a estimativa conservadora é converter de 1% para 3-5% dos leads — representando um aumento de R$ 15.000 a R$ 45.000/mês em faturamento adicional.</p>
-      </div>
-
-      {/* ─────────────────────────────────────────────────────────
           SEÇÃO 7: PERSONALIDADE E COMUNICAÇÃO
           ───────────────────────────────────────────────────────── */}
 
@@ -902,10 +859,6 @@ export default function TabSistema() {
         ))}
       </div>
 
-      <div className="rule-box">
-        <strong>Meta de conversão:</strong> Conversão atual &lt; 1%. Meta com o sistema: 3-5%. Cada ponto percentual de melhoria representa aproximadamente R$ 15.000/mês em faturamento adicional, considerando o ticket médio de R$ 5.000 e volume de 600+ leads/mês.
-      </div>
-
       {/* ─────────────────────────────────────────────────────────
           SEÇÃO 12: BANCO DE PROVAS SOCIAIS
           ───────────────────────────────────────────────────────── */}
@@ -950,15 +903,14 @@ export default function TabSistema() {
           <thead><tr><th>Regra</th><th>Detalhe</th></tr></thead>
           <tbody>
             <tr><td className="td-label">Avaliação paga</td><td>Paciente só entra na agenda após pagamento de R$ 350. Sem exceções.</td></tr>
-            <tr><td className="td-label">Tipos de avaliação</td><td>Presencial (preferência — conversão maior, inclui avatar facial) e online (sem avatar).</td></tr>
+            <tr><td className="td-label">Tipos de avaliação</td><td>Presencial (preferência — conversão maior) e online. Ambas incluem avatar facial.</td></tr>
             <tr><td className="td-label">Duração</td><td>Aproximadamente 2 horas (avaliação + possibilidade de procedimento no mesmo dia).</td></tr>
             <tr><td className="td-label">Múltiplos procedimentos</td><td>Podem ser feitos na mesma sessão ("já está anestesiado, aproveita"). A IA informa essa possibilidade.</td></tr>
             <tr><td className="td-label">Google Calendar</td><td>Integração principal para consulta de disponibilidade e reserva de slots.</td></tr>
-            <tr><td className="td-label">Sistema Santé</td><td>Verificar se possui API para integração. Se não, Google Calendar é fonte primária.</td></tr>
             <tr><td className="td-label">Lembrete</td><td>1 dia antes (até 9h da manhã) + re-confirmação às 17h30 se não respondeu o primeiro.</td></tr>
             <tr><td className="td-label">Pré-cadastro</td><td>Link do formulário de anamnese enviado após confirmação. Preenchimento solicitado até 24h antes.</td></tr>
             <tr><td className="td-label">No-show</td><td>Mensagem empática + oferta de reagendamento. Raro (paciente já pagou, poucos faltam).</td></tr>
-            <tr><td className="td-label">Pagamento</td><td>IA conduz até a decisão. Atendente humano finaliza pagamento. Provedor atual: Banco Infinity (verificar API para link).</td></tr>
+            <tr><td className="td-label">Pagamento</td><td>IA conduz até a decisão e gera link de pagamento automático via InfinitePay (API POST /links). Pix gratuito + cartão até 12x. Webhook confirma pagamento em tempo real.</td></tr>
           </tbody>
         </table>
       </div>

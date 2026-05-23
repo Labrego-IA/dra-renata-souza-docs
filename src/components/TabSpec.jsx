@@ -16,18 +16,11 @@ const integrations = [
     details: 'Avaliação só entra na agenda após pagamento (R$ 350).',
   },
   {
-    name: 'Santé (clínica)',
-    status: 'A verificar',
-    statusColor: '#d97706',
-    desc: 'Sistema proprietário de agendamento de clínicas. Verificar se possui API para integração.',
-    details: 'Se não tiver API, Google Calendar será fonte única. Verificar possibilidade de webhook ou sync.',
-  },
-  {
-    name: 'Banco Infinity',
-    status: 'A verificar',
-    statusColor: '#d97706',
-    desc: 'Maquininha de pagamento. Verificar integração para link de pagamento via API.',
-    details: 'Alternativas: Mercado Pago ou Asaas para gerar link de pagamento automático.',
+    name: 'InfinitePay',
+    status: 'Viável — API disponível',
+    statusColor: '#16a34a',
+    desc: 'API de checkout para geração de links de pagamento (Pix gratuito + cartão até 12x).',
+    details: 'POST /links gera link de pagamento. Webhooks notificam confirmação automática. Checkout 100% gratuito.',
   },
   {
     name: 'Storage (fotos/depoimentos)',
@@ -64,26 +57,24 @@ const checklistMedia = [
   'Lista de procedimentos com descrição técnica simplificada',
   'Formulário de pré-cadastro/anamnese (modelo atual)',
   'Contato da Lívia (WhatsApp técnico) para escalação',
-  'Acesso ao Santé para verificar API',
 ]
 
 const decisions = [
   { decision: 'Apenas 1 canal: WhatsApp comercial', detail: 'IA atuará exclusivamente no WhatsApp comercial. Instagram DM e WhatsApp técnico ficam fora do escopo.' },
   { decision: 'Áudio habilitado', detail: 'IA envia e recebe áudio. Se paciente mandar áudio, responde com áudio.' },
-  { decision: 'Avaliação presencial como preferência', detail: 'Presencial inclui avatar facial (simulação). Online não inclui.' },
+  { decision: 'Avaliação presencial como preferência', detail: 'Ambas (presencial e online) incluem avatar facial.' },
   { decision: 'Sem emojis', detail: 'Anderson e Renata definiram: comunicação sem emojis.' },
   { decision: 'Tom semi-formal', detail: 'Meio-termo: nem robótico, nem informal com gírias.' },
   { decision: 'Follow-up até 60 dias', detail: 'Após 60 dias sem resposta, lead é encerrado com mensagem de finalização.' },
   { decision: 'Prova social contextualizada', detail: 'Fotos enviadas APÓS entender a dor, nunca no início. Máximo 2-3 por conversa.' },
   { decision: 'Escalação para Lívia', detail: 'Pós-procedimento e reclamações vão para o WhatsApp da Lívia (equipe técnica).' },
-  { decision: 'Pagamento = humano', detail: 'Fechamento de pagamento sempre transferido para atendente humano.' },
+  { decision: 'Pagamento automatizado', detail: 'IA gera link de pagamento via InfinitePay (Pix ou cartão até 12x) e envia direto na conversa.' },
   { decision: 'Nome da IA a definir', detail: 'Anderson e Renata vão escolher o nome. IA se apresenta pelo nome escolhido.' },
   { decision: 'Multi-usuário no mesmo número', detail: 'Vários atendentes podem intervir no mesmo número WhatsApp via plataforma.' },
 ]
 
 const pendingDecisions = [
-  { item: 'Integração com Santé', detail: 'Verificar se o sistema possui API. Impacta o fluxo de agendamento.' },
-  { item: 'Gateway de pagamento', detail: 'Banco Infinity ou alternativa (Mercado Pago/Asaas). Impacta link de pagamento automático.' },
+  { item: 'Gateway de pagamento', detail: 'InfinitePay confirmada — API disponível (POST /links + webhooks). Definir credenciais e ambiente de testes.' },
   { item: 'Nome da IA', detail: 'Anderson e Renata vão definir. Precisa estar pronto antes do go-live.' },
   { item: 'Formulário de anamnese', detail: 'Verificar integração com sistema jurídico atual de pré-cadastro.' },
   { item: 'Modelo de LLM', detail: 'Definir entre GPT-4o, Claude ou modelo otimizado para custo vs qualidade.' },
@@ -91,7 +82,6 @@ const pendingDecisions = [
 ]
 
 const risks = [
-  { risk: 'Santé sem API', prob: 'Média', impact: 'Alto', mitigation: 'Google Calendar como fallback único. Sync manual se necessário.' },
   { risk: 'Qualidade do áudio IA', prob: 'Média', impact: 'Alto', mitigation: 'Testes extensivos. TTS com voz natural, validação com equipe.' },
   { risk: 'Rejeição da IA por pacientes', prob: 'Baixa', impact: 'Médio', mitigation: 'Tom humanizado, escalação rápida para humano. Nome próprio (não "robô").' },
   { risk: 'Custo de API elevado', prob: 'Baixa', impact: 'Médio', mitigation: 'Monitoramento de uso. Cache de respostas frequentes. Modelo otimizado.' },

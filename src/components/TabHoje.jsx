@@ -5,8 +5,7 @@ const tools = [
   { abbr: 'WA', color: '#25D366', name: 'WhatsApp Comercial', desc: '1 número para todo o comercial. Atendente (1 pessoa) conduz vendas seguindo orientações da Dra. Renata. Horário 8h-17h30. Problema: demora nas respostas causa 70% de perda por tempo de espera.' },
   { abbr: 'WA', color: '#374151', name: 'WhatsApp Técnico', desc: 'Número separado para pós-procedimento e suporte clínico. Atendimento humano exclusivo com a Lívia. Não será automatizado — IA é exclusivamente comercial.' },
   { abbr: 'CRM', color: '#607cf9', name: 'CRM (atual)', desc: 'Registro de leads e follow-up. Usado para retornar a leads frios, mas follow-up é inconsistente — não é feito com constância.' },
-  { abbr: 'S', color: '#543285', name: 'Santé', desc: 'Sistema proprietário de agendamento de clínicas. Verificar se possui API para integração. Se não, Google Calendar será fonte primária.' },
-  { abbr: '$', color: '#b45309', name: 'Banco Infinity', desc: 'Maquininha de pagamento. Verificar integração para link de pagamento via API. Alternativa: Mercado Pago ou Asaas.' },
+  { abbr: '$', color: '#b45309', name: 'InfinitePay', desc: 'Maquininha de pagamento. API disponível para geração de links de pagamento (POST /links) e verificação de status com webhooks.' },
 ]
 
 const painPoints = [

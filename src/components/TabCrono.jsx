@@ -80,7 +80,6 @@ const nextSteps = [
   { action: 'Envio de fotos antes/depois', responsible: 'Renata', deadline: '28/mai/2026', status: 'Pendente' },
   { action: 'Envio de depoimentos', responsible: 'Renata', deadline: '28/mai/2026', status: 'Pendente' },
   { action: 'Playbook comercial detalhado', responsible: 'Renata', deadline: '30/mai/2026', status: 'Pendente' },
-  { action: 'Verificar API do Sante', responsible: 'Labrego IA', deadline: '30/mai/2026', status: 'Pendente' },
   { action: 'Definir gateway de pagamento', responsible: 'Anderson + Labrego IA', deadline: '02/jun/2026', status: 'Pendente' },
   { action: 'Escolher nome da IA', responsible: 'Anderson e Renata', deadline: '02/jun/2026', status: 'Pendente' },
   { action: 'Início do desenvolvimento', responsible: 'Labrego IA', deadline: '03/jun/2026', status: 'Aguardando' },
