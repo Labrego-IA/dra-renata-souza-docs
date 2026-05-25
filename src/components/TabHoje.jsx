@@ -4,8 +4,8 @@ const tools = [
   { abbr: 'IG', color: '#9c46e0', name: 'Instagram (2 perfis)', desc: 'Captação de leads via tráfego pago e orgânico. Gera 20 a 30 leads por dia (~600+ por mês). Um perfil direciona para WhatsApp, outro fica no Instagram DM para captação de pacientes-modelo para cursos.' },
   { abbr: 'WA', color: '#25D366', name: 'WhatsApp Comercial', desc: '1 número para todo o comercial. Atendente (1 pessoa) conduz vendas seguindo orientações da Dra. Renata. Horário 8h-17h30. Problema: demora nas respostas causa 70% de perda por tempo de espera.' },
   { abbr: 'WA', color: '#374151', name: 'WhatsApp Técnico', desc: 'Número separado para pós-procedimento e suporte clínico. Atendimento humano exclusivo com a Lívia. Não será automatizado — IA é exclusivamente comercial.' },
-  { abbr: 'CRM', color: '#607cf9', name: 'CRM (atual)', desc: 'Registro de leads e follow-up. Usado para retornar a leads frios, mas follow-up é inconsistente — não é feito com constância.' },
-  { abbr: '$', color: '#b45309', name: 'InfinitePay', desc: 'Maquininha de pagamento. API disponível para geração de links de pagamento (POST /links) e verificação de status com webhooks.' },
+  { abbr: 'CRM', color: '#607cf9', name: 'Kenbox (CRM atual)', desc: 'CRM usado para registro de leads e follow-up. Será substituído por CRM próprio integrado ao agente IA. Follow-up inconsistente — não é feito com constância.' },
+  { abbr: '$', color: '#b45309', name: 'InfinityPay', desc: 'Processadora de pagamento. API confirmada para geração automática de links de pagamento (POST /links) — Pix gratuito + cartão até 12x. Webhooks para confirmação em tempo real.' },
 ]
 
 const painPoints = [
@@ -21,8 +21,8 @@ const clientJourney = [
   { title: 'Lead vê anúncio no Instagram', desc: 'Lead vê anúncio de rinomodelação ou harmonização facial (95% tráfego pago). Clica e é direcionado para WhatsApp da clínica ou fica no Instagram DM.' },
   { title: 'Atendente recebe a mensagem', desc: 'Atendente comercial (1 pessoa, 8h-17h30) recebe a mensagem. Identifica a dor do paciente — giba, ponta do nariz, olheira, lábios, botox.' },
   { title: 'Envia fotos e explica benefícios', desc: 'Envia fotos de antes/depois similares ao caso do paciente. Explica benefícios e especialidades da Dra. Renata. Conduz para agendamento de avaliação.' },
-  { title: 'Pagamento da avaliação', desc: 'Paciente paga avaliação (R$ 350) — só entra na agenda após pagamento. Recebe formulário de pré-cadastro (anamnese via sistema jurídico).' },
-  { title: 'Lembrete e avaliação', desc: 'Lembrete 1 dia antes (até 9h) + confirmação às 17h30. Avaliação com Dra. Renata — presencial inclui avatar facial (simulação), online não.' },
+  { title: 'Pagamento da avaliação', desc: 'Paciente paga avaliação (R$ 350) via maquininha InfinityPay ou link manual — só entra na agenda após pagamento. Pré-cadastro feito por formulário.' },
+  { title: 'Lembrete e avaliação', desc: 'Lembrete manual antes da consulta. Avaliação presencial com a Dra. Renata na clínica em Jundiaí.' },
   { title: 'Fechamento', desc: 'Fechamento do procedimento e agendamento da cirurgia/procedimento. Taxa de conversão presencial: ~90% após a avaliação.' },
 ]
 

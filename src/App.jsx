@@ -55,8 +55,8 @@ const IconX = () => (
 
 const summaryCards = [
   { id: 'hoje', num: '01', title: 'Hoje (as is)', desc: 'Como funciona o atendimento hoje — ferramentas, processos e gargalos identificados', color: '#9c46e0' },
-  { id: 'sistema', num: '02', title: 'O Sistema (to be)', desc: '4 módulos que transformam o atendimento: Agente IA, Prova Social, CRM e Agendamento', color: '#607cf9' },
-  { id: 'spec', num: '03', title: 'Referência Técnica', desc: 'Regras de negócio, integrações, decisões tomadas e pendentes, checklist de materiais', color: '#9c46e0' },
+  { id: 'sistema', num: '02', title: 'O Sistema (to be)', desc: '5 módulos que transformam o atendimento: Agente IA, Prova Social, CRM, Agendamento e Pagamento', color: '#607cf9' },
+  { id: 'spec', num: '03', title: 'Fluxograma', desc: 'Visualização interativa do fluxo completo da conversa — do primeiro contato até o agendamento', color: '#9c46e0' },
   { id: 'crono', num: '04', title: 'Cronograma', desc: '8 semanas de projeto + 21 dias de hyper-care com demos semanais', color: '#543285' },
 ]
 
@@ -97,7 +97,7 @@ function App() {
   const tabs = [
     { id: 'hoje', label: 'Hoje (as is)', icon: <IconAlertCircle /> },
     { id: 'sistema', label: 'O Sistema (to be)', icon: <IconLayout /> },
-    { id: 'spec', label: 'Referência Técnica', icon: <IconFileText /> },
+    { id: 'spec', label: 'Fluxograma', icon: <IconFileText /> },
     { id: 'crono', label: 'Cronograma', icon: <IconCalendar /> },
   ]
 

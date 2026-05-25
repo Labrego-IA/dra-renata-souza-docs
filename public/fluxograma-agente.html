@@ -27,13 +27,15 @@
 
   .header {
     background: linear-gradient(135deg, var(--preto) 0%, var(--roxo-escuro) 100%);
-    padding: 28px 48px;
+    padding: 16px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
   .header-left { display: flex; align-items: center; gap: 20px; }
@@ -55,9 +57,10 @@
     display: flex;
     gap: 6px;
     align-items: center;
+    flex-wrap: wrap;
   }
 
-  .header-nav a {
+  .header-nav a:not(.btn-voltar) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -73,12 +76,32 @@
     border: 1px solid rgba(255,255,255,0.1);
   }
 
-  .header-nav a:hover {
+  .header-nav a:not(.btn-voltar):hover {
     background: rgba(255,255,255,0.2);
     color: #fff;
   }
 
-  .header-nav a.active {
+  .btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.15s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin-right: 12px;
+  }
+
+  .btn-voltar:hover {
+    background: rgba(255,255,255,0.25);
+  }
+
+  .header-nav a:not(.btn-voltar).active {
     background: var(--roxo-principal);
     color: #fff;
     border-color: var(--roxo-principal);
@@ -332,6 +355,74 @@
   .footer p { font-size: 12px; color: #999; }
 
 
+  /* ========== MOBILE ========== */
+  @media (max-width: 768px) {
+    .header {
+      padding: 14px 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .header-left { gap: 10px; }
+    .header-logo img { height: 22px; }
+    .header-title { font-size: 13px; }
+
+    .header-nav {
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .header-nav-label { display: none; }
+
+    .btn-voltar {
+      font-size: 12px;
+      padding: 6px 12px;
+      margin-right: 6px;
+    }
+
+    .main { padding: 20px 16px; }
+
+    .hero-section { padding: 28px 20px; }
+    .hero-section h1 { font-size: 22px; }
+    .hero-section p { font-size: 14px; }
+
+    .arch-grid {
+      grid-template-columns: 1fr !important;
+      gap: 10px;
+    }
+
+    .etapa-card { padding: 20px; }
+    .etapa-card h2 { font-size: 18px; }
+
+    .mermaid-container { padding: 12px; }
+    .etapa-card-body { overflow-x: auto; -webkit-overflow-scrolling: touch; justify-content: flex-start; }
+    .mermaid { justify-content: flex-start; min-width: 600px; }
+    .mermaid svg { height: auto; display: block; }
+
+    .kpi-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+
+    .trigger-box { padding: 12px; font-size: 13px; }
+
+    .footer { padding: 20px; }
+  }
+
+  @media (max-width: 480px) {
+    .header-title { display: none; }
+    .header-divider { display: none; }
+
+    .hero-section h1 { font-size: 18px; }
+    .hero-section p { font-size: 13px; }
+
+    .kpi-grid { grid-template-columns: 1fr !important; }
+
+    .header-nav a:not(.btn-voltar) {
+      width: 28px;
+      height: 28px;
+      font-size: 11px;
+    }
+  }
+
   /* ========== PRINT ========== */
   @media print {
     body { background: #fff; }
@@ -353,6 +444,10 @@
     <div class="header-title">Fluxograma &mdash; Agente Comercial IA | Dra. Renata Souza</div>
   </div>
   <div class="header-nav">
+    <a href="/" class="btn-voltar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Voltar
+    </a>
     <span class="header-nav-label">Etapas:</span>
     <a href="#etapa-0" title="Recep&ccedil;&atilde;o">0</a>
     <a href="#etapa-1" title="Identifica&ccedil;&atilde;o">1</a>

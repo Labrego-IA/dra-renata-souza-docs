@@ -109,34 +109,34 @@ const conversationFlow = [
   },
   {
     etapa: 3,
-    title: 'Construção de valor e prova social',
+    title: 'Diferenciais e prova social',
     color: '#8b5cf6',
-    description: 'Com a dor mapeada, a IA apresenta a expertise da Dra. Renata e envia provas sociais contextualizadas (fotos antes/depois e depoimentos) que são similares ao caso do paciente.',
+    description: 'Com a dor mapeada, a IA primeiro apresenta os diferenciais da Dra. Renata (especialidade + avatar facial), e só depois envia provas sociais contextualizadas (fotos antes/depois e depoimentos) similares ao caso do paciente.',
     steps: [
       {
         passo: '3.1',
-        title: 'Apresentação da especialidade',
+        title: 'Apresentação da especialidade (diferencial)',
         detail: 'A IA destaca que a Dra. Renata é especialista em harmonização facial, com foco no procedimento de interesse do paciente. Usa argumentos de autoridade: anos de experiência, número de procedimentos realizados, resultados consistentes.',
       },
       {
         passo: '3.2',
-        title: 'Seleção inteligente de prova social',
-        detail: 'O sistema busca no banco de provas sociais o caso mais similar à queixa do paciente. Se a dor é "ponta caída", seleciona fotos de pacientes que tinham ponta caída e corrigiram. Nunca envia caso de giba se a dor é ponta.',
+        title: 'Diferencial do avatar facial',
+        detail: 'Mencionar que na avaliação presencial, a Dra. Renata utiliza tecnologia de avatar facial que mostra exatamente como ficaria o resultado no rosto do paciente. Esse diferencial é apresentado ANTES das provas sociais como incentivo para o agendamento presencial.',
       },
       {
         passo: '3.3',
+        title: 'Seleção inteligente de prova social',
+        detail: 'Após apresentar os diferenciais, o sistema busca no banco de provas sociais o caso mais similar à queixa do paciente. Se a dor é "ponta caída", seleciona fotos de pacientes que tinham ponta caída e corrigiram. Nunca envia caso de giba se a dor é ponta.',
+      },
+      {
+        passo: '3.4',
         title: 'Envio de fotos antes/depois',
         detail: 'Máximo 2-3 fotos por conversa. Enviadas com contexto: "Olha como ficou essa paciente que tinha uma queixa muito parecida com a sua, [Nome]." Nunca enviar fotos de cara na primeira mensagem.',
       },
       {
-        passo: '3.4',
+        passo: '3.5',
         title: 'Envio de depoimentos',
         detail: 'Após as fotos, enviar 1 depoimento relevante de paciente satisfeito. Formato texto ou áudio. Reforça a prova social com evidência de terceiros.',
-      },
-      {
-        passo: '3.5',
-        title: 'Diferencial do avatar facial',
-        detail: 'Mencionar que na avaliação presencial, a Dra. Renata utiliza tecnologia de avatar facial que mostra exatamente como ficaria o resultado no rosto do paciente. Esse diferencial só é revelado como incentivo para o agendamento presencial.',
       },
     ],
     dataStored: ['quais provas sociais foram enviadas (IDs das fotos)', 'quais depoimentos foram enviados', 'reação do paciente às provas sociais', 'se demonstrou interesse ou resistência após ver as fotos'],
@@ -164,8 +164,8 @@ const conversationFlow = [
       },
       {
         passo: '4.3',
-        title: 'Avaliação obrigatória: R$ 350',
-        detail: 'Explicar que o primeiro passo é a avaliação com a Dra. Renata (R$ 350). Presencial é preferência (conversão mais alta). Online também disponível. O pagamento é obrigatório para confirmar a agenda.',
+        title: 'Avaliação obrigatória',
+        detail: 'Explicar que o primeiro passo é a avaliação com a Dra. Renata. Presencial: R$ 350 (preferência — conversão mais alta). Online: R$ 150. O pagamento é obrigatório para confirmar a agenda.',
       },
       {
         passo: '4.4',
@@ -218,8 +218,8 @@ const conversationFlow = [
       },
       {
         passo: '5.4',
-        title: 'Informar sobre pagamento',
-        detail: '"Para confirmar sua avaliação na agenda da Dra. Renata, o próximo passo é o pagamento de R$ 350. Vou te enviar o link agora!" A IA gera o link de pagamento automaticamente via API InfinitePay (Pix gratuito ou cartão até 12x) e envia direto no WhatsApp.',
+        title: 'Geração automática do link de pagamento',
+        detail: '"Para confirmar sua avaliação na agenda da Dra. Renata, o próximo passo é o pagamento. Vou te enviar o link agora!" A IA gera o link de pagamento automaticamente via API InfinityPay (Pix gratuito ou cartão até 12x) e envia direto no WhatsApp. Presencial: R$ 350 / Online: R$ 150. Webhook confirma pagamento em tempo real.',
       },
       {
         passo: '5.5',
@@ -236,7 +236,7 @@ const conversationFlow = [
     dialogExample: {
       context: 'Paciente aceita agendar avaliação presencial',
       iaResponse: '"Ótimo, [Nome]! A Dra. Renata tem disponibilidade na quinta-feira dia 29 às 14h ou na sexta dia 30 às 10h. Qual horário fica melhor para você? A clínica fica em Jundiaí-SP. Assim que você escolher, já te envio o link de pagamento!"',
-      note: 'A IA oferece opções reais de agenda (consultando Google Calendar). Após a escolha, gera e envia o link de pagamento via InfinitePay automaticamente.',
+      note: 'A IA oferece opções reais de agenda (consultando Google Calendar). Após a escolha, gera e envia o link de pagamento via InfinityPay automaticamente.',
     },
   },
   {
@@ -248,7 +248,7 @@ const conversationFlow = [
       {
         passo: '6.1',
         title: 'Paciente pede para falar com humano',
-        detail: 'A IA responde: "Vou transferir você para nossa equipe. Um momento!" e notifica o atendente comercial via alerta no dashboard. Salva o contexto completo da conversa para que o humano continue de onde parou.',
+        detail: 'A IA transfere IMEDIATAMENTE, sem tentar reter ou convencer: "Vou transferir você para nossa equipe agora mesmo! Um momento!" e notifica o atendente comercial via alerta no dashboard. Salva o contexto completo da conversa para que o humano continue de onde parou.',
       },
       {
         passo: '6.2',
@@ -258,7 +258,7 @@ const conversationFlow = [
       {
         passo: '6.3',
         title: 'Fechamento de pagamento',
-        detail: 'Quando o paciente confirma o horário, a IA gera o link de pagamento via API InfinitePay (Pix gratuito ou cartão até 12x) e envia direto na conversa. Webhook confirma o pagamento em tempo real e atualiza o status no CRM.',
+        detail: 'Quando o paciente confirma o horário, a IA gera o link de pagamento via API InfinityPay (Pix gratuito ou cartão até 12x) e envia direto na conversa. Webhook confirma o pagamento em tempo real e atualiza o status no CRM.',
       },
       {
         passo: '6.4',
@@ -267,6 +267,11 @@ const conversationFlow = [
       },
       {
         passo: '6.5',
+        title: 'ROF — Lead sem condição financeira',
+        detail: 'Se o paciente demonstrar interesse mas não tiver condições financeiras para o procedimento padrão, a IA oferece a opção ROF (mentoria de pacientes-modelo): "A Dra. Renata tem um programa especial para pacientes-modelo onde o investimento é menor. Posso te contar mais sobre isso?" O lead é direcionado para o funil ROF com acompanhamento separado.',
+      },
+      {
+        passo: '6.6',
         title: 'Múltiplos procedimentos',
         detail: 'Se o paciente demonstrar interesse em mais de um procedimento, a IA conduz normalmente sem limitar. Na avaliação, procedimentos podem ser realizados juntos. "Inclusive, muitos pacientes aproveitam para fazer mais de um procedimento na mesma sessão."',
       },
@@ -430,11 +435,15 @@ const guardrailsFaz = [
   'Salva histórico completo de cada interação para consulta futura',
   'Classifica leads por temperatura (quente/morno/frio) para priorização',
   'Trata objeções com técnicas específicas para cada tipo de resistência',
+  'Registra motivo de não fechamento quando lead desiste (preço, medo, tempo, etc.)',
+  'Oferece opção ROF (paciente-modelo) para leads sem condição financeira',
+  'Dias e horários de agendamento configuráveis pela clínica (sem hardcode)',
+  'Envia áudio personalizado da Dra. Renata no follow-up D7',
 ]
 
 const guardrailsNaoFaz = [
   'Não dá diagnóstico médico ou estético — sempre encaminha para avaliação com a Dra. Renata',
-  'Pagamento automatizado — gera link via InfinitePay (Pix ou cartão) e envia direto na conversa',
+  'Pagamento automatizado — gera link via InfinityPay (Pix ou cartão) e envia direto na conversa',
   'Não atende pós-procedimento — direciona para WhatsApp da Lívia (equipe técnica)',
   'Não atende reclamações — direciona para o número de pós-procedimento',
   'Não omite que é IA se perguntada diretamente — responde com honestidade e naturalidade',
@@ -447,7 +456,7 @@ const guardrailsNaoFaz = [
   'Não inventa informações sobre procedimentos que não estão na base de dados',
   'Não informa valores de procedimentos que não estão cadastrados no sistema',
   'Não faz promessas de resultado ("garantido", "com certeza vai ficar perfeito")',
-  'Não zera ou elimina o valor da avaliação (R$ 350) — pode informar que é descontado do procedimento',
+  'Não zera ou elimina o valor da avaliação (presencial R$ 350 / online R$ 150) — pode informar que é descontado do procedimento',
   'Não tenta reter o paciente quando ele pede explicitamente para falar com humano',
   'Não compartilha dados de outros pacientes (nomes, fotos identificáveis sem autorização)',
   'Não envia mais de 3 fotos de antes/depois na mesma conversa',
@@ -472,13 +481,18 @@ const modules = [
   },
   {
     num: '03', title: 'CRM + Dashboard', color: '#543285',
-    desc: 'Pipeline visual Kanban com métricas em tempo real e histórico de conversas',
-    items: ['Pipeline: Novo Lead > Em Conversa > Agendou > Compareceu > Fechou', 'Métricas: leads/dia, taxa conversão, receita pipeline', 'Histórico completo de conversas IA-paciente', 'Multi-usuário no mesmo número WhatsApp', 'Filtros por procedimento e status', 'Exportação de relatórios']
+    desc: 'CRM próprio (migração do Kenbox) com pipeline visual Kanban, métricas em tempo real e histórico de conversas',
+    items: ['Pipeline: Novo Lead > Em Conversa > Agendou > Compareceu > Fechou', 'Classificação de leads: quentes, mornos, frios, mortos', 'Métricas: leads/dia, leads/semana, taxa conversão, receita pipeline', 'Motivos de não fechamento registrados por lead', 'Histórico completo de conversas IA-paciente', 'Multi-usuário no mesmo número WhatsApp', 'Filtros por procedimento e status', 'Exportação de relatórios']
   },
   {
     num: '04', title: 'Agendamento', color: '#8b5cf6',
-    desc: 'Google Calendar integrado com lembretes automáticos e formulário pré-cadastro',
-    items: ['Avaliação paga (R$ 350) — só agenda após pagamento', 'Presencial (preferência) ou online', 'Lembrete: 1 dia antes (até 9h) + re-confirmação 17h30', 'Formulário pré-cadastro enviado automaticamente', 'Integração com Google Calendar para disponibilidade']
+    desc: 'Google Calendar integrado com lembretes automáticos, dias/horários configuráveis e formulário pré-cadastro',
+    items: ['Avaliação paga: presencial R$ 350 / online R$ 150', 'Presencial (preferência) ou online', 'Dias e horários configuráveis pela clínica (sem hardcode)', 'Lembrete: 1 dia antes (até 9h) + re-confirmação 17h30', 'Formulário pré-cadastro enviado automaticamente', 'Integração com Google Calendar para disponibilidade', 'Santé (sistema da clínica) gerenciado separadamente — não tem API']
+  },
+  {
+    num: '05', title: 'Pagamento Automatizado', color: '#b45309',
+    desc: 'InfinityPay integrada via API para geração automática de links de pagamento',
+    items: ['Geração automática de link de pagamento via API InfinityPay', 'Pix gratuito + cartão até 12x', 'Webhook confirma pagamento em tempo real', 'Atualização automática do status no CRM', 'IA envia link direto na conversa do WhatsApp']
   },
 ]
 
@@ -494,17 +508,17 @@ const personality = [
 ]
 
 const followUp = [
-  { timing: '3 dias', approach: 'Retomar conversa mencionando a dor pelo nome. Alternar formato (áudio/texto).', example: '"[Nome], lembrei de você! Vi que você tinha interesse em melhorar [queixa]. Temos novidades que podem te interessar..."' },
-  { timing: '7 dias', approach: 'Novo ângulo — enviar caso de sucesso diferente. Mudar formato de abordagem.', example: '"[Nome], queria te mostrar o resultado de uma paciente que tinha uma queixa muito parecida com a sua. Olha como ficou:" [envia foto diferente]' },
+  { timing: '3 dias', approach: 'Retomar conversa mencionando a dor pelo nome. Alternar formato (áudio/texto). Se lead demonstrou barreira financeira, mencionar opção ROF (paciente-modelo).', example: '"[Nome], lembrei de você! Vi que você tinha interesse em melhorar [queixa]. Temos novidades que podem te interessar..."' },
+  { timing: '7 dias', approach: 'Enviar áudio personalizado da própria Dra. Renata falando sobre o procedimento de interesse. Complementar com caso de sucesso diferente.', example: '[Áudio da Dra. Renata] + "[Nome], a Dra. Renata gravou esse áudio especialmente sobre [procedimento]. E olha o resultado de uma paciente com caso parecido:" [envia foto]' },
   { timing: '20 dias', approach: 'Perguntar se já resolveu o problema, mostrar solução alternativa.', example: '"Oi, [Nome]! Já faz um tempinho que conversamos sobre [procedimento]. Você já resolveu essa questão? Se ainda tiver interesse, posso te contar sobre uma condição especial."' },
   { timing: '30 dias', approach: 'Reforçar disponibilidade, mencionar resultados recentes. Tom mais direto.', example: '"[Nome], a agenda da Dra. Renata para [mês] já está abrindo. Se quiser garantir um horário para a avaliação, estou aqui para ajudar."' },
   { timing: '60 dias', approach: 'Última tentativa — mensagem de encerramento. Se não responder, finalizar.', example: '"[Nome], estou encerrando nosso atendimento por enquanto. Se no futuro tiver interesse em [procedimento], é só me mandar uma mensagem. A clínica da Dra. Renata está sempre aqui para você."' },
 ]
 
 const escalation = [
-  { situation: 'Paciente pede para falar com humano', action: '"Vou transferir você para nossa equipe!" + notificar atendente via dashboard com contexto completo' },
+  { situation: 'Paciente pede para falar com humano', action: 'Transferir IMEDIATAMENTE sem tentar reter: "Vou transferir você para nossa equipe agora mesmo!" + notificar atendente via dashboard com contexto completo' },
   { situation: 'Reclamação / pós-procedimento', action: 'Direcionar para WhatsApp da Lívia (equipe técnica de pós-procedimento)' },
-  { situation: 'Fechamento de pagamento', action: 'IA gera link de pagamento via InfinitePay (Pix ou cartão até 12x) e envia direto na conversa' },
+  { situation: 'Fechamento de pagamento', action: 'IA gera link de pagamento via InfinityPay (Pix ou cartão até 12x) e envia direto na conversa' },
   { situation: 'Pergunta técnica sem resposta na base', action: '"A Dra. Renata vai te explicar em detalhes na avaliação"' },
   { situation: 'Paciente insatisfeito ou irritado', action: 'Transferir imediatamente para humano — nunca tentar resolver reclamação via IA' },
   { situation: 'Dúvida sobre medicamentos/contraindicações', action: '"Essa informação é muito importante e precisa ser avaliada pela Dra. Renata pessoalmente"' },
@@ -520,10 +534,13 @@ const pipelineSteps = [
 
 const dashboardMetrics = [
   { title: 'Leads hoje', desc: 'Total de novos leads do dia, com comparativo vs média' },
+  { title: 'Leads na semana', desc: 'Visão semanal de novos leads com comparativo vs semanas anteriores' },
+  { title: 'Classificação de leads', desc: 'Distribuição por temperatura: quentes, mornos, frios e mortos' },
   { title: 'Taxa de conversão', desc: '% de leads que agendaram avaliação (meta: 3-5%)' },
   { title: 'Agendamentos', desc: 'Avaliações agendadas no período, presencial vs online' },
   { title: 'Receita do pipeline', desc: 'Valor estimado dos leads em andamento por procedimento' },
   { title: 'Conversão por procedimento', desc: '% por tipo (rinomodelação, botox, preenchimento, full face)' },
+  { title: 'Motivos de não fechamento', desc: 'Distribuição dos motivos pelos quais leads não converteram (preço, medo, tempo, etc.)' },
   { title: 'Follow-up pendentes', desc: 'Leads que precisam de reativação — priorizados por temperatura' },
 ]
 
@@ -609,7 +626,7 @@ export default function TabSistema() {
 
       <SectionHero
         title="Agente Comercial IA + CRM Inteligente"
-        description="4 módulos integrados que transformam o atendimento da clínica — do primeiro contato até o fechamento do procedimento. Abaixo, cada etapa do fluxo conversacional com exemplos reais de diálogo, dados salvos e regras de negócio."
+        description="5 módulos integrados que transformam o atendimento da clínica — do primeiro contato até o fechamento do procedimento. Abaixo, cada etapa do fluxo conversacional com exemplos reais de diálogo, dados salvos e regras de negócio."
       />
 
       <div className="highlight-box" style={{ marginBottom: 32, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
@@ -736,7 +753,7 @@ export default function TabSistema() {
           SEÇÃO 5: OS 4 MÓDULOS DO SISTEMA
           ───────────────────────────────────────────────────────── */}
 
-      <h3 className="sub-title">Os 4 módulos do sistema</h3>
+      <h3 className="sub-title">Os 5 módulos do sistema</h3>
       <div className="module-group-grid">
         {modules.map((m, i) => <ModuleGroupCard key={i} {...m} />)}
       </div>
@@ -902,15 +919,17 @@ export default function TabSistema() {
         <table className="detail-table">
           <thead><tr><th>Regra</th><th>Detalhe</th></tr></thead>
           <tbody>
-            <tr><td className="td-label">Avaliação paga</td><td>Paciente só entra na agenda após pagamento de R$ 350. Sem exceções.</td></tr>
+            <tr><td className="td-label">Avaliação paga</td><td>Paciente só entra na agenda após pagamento. Presencial: R$ 350 / Online: R$ 150. Sem exceções.</td></tr>
             <tr><td className="td-label">Tipos de avaliação</td><td>Presencial (preferência — conversão maior) e online. Ambas incluem avatar facial.</td></tr>
+            <tr><td className="td-label">Dias e horários</td><td>Configuráveis pela clínica (sem hardcode). A IA consulta a configuração para oferecer apenas horários disponíveis.</td></tr>
             <tr><td className="td-label">Duração</td><td>Aproximadamente 2 horas (avaliação + possibilidade de procedimento no mesmo dia).</td></tr>
             <tr><td className="td-label">Múltiplos procedimentos</td><td>Podem ser feitos na mesma sessão ("já está anestesiado, aproveita"). A IA informa essa possibilidade.</td></tr>
             <tr><td className="td-label">Google Calendar</td><td>Integração principal para consulta de disponibilidade e reserva de slots.</td></tr>
+            <tr><td className="td-label">Santé</td><td>Sistema de gestão da clínica. Não possui API — gerenciado separadamente pela equipe. Não será integrado na fase 1.</td></tr>
             <tr><td className="td-label">Lembrete</td><td>1 dia antes (até 9h da manhã) + re-confirmação às 17h30 se não respondeu o primeiro.</td></tr>
             <tr><td className="td-label">Pré-cadastro</td><td>Link do formulário de anamnese enviado após confirmação. Preenchimento solicitado até 24h antes.</td></tr>
             <tr><td className="td-label">No-show</td><td>Mensagem empática + oferta de reagendamento. Raro (paciente já pagou, poucos faltam).</td></tr>
-            <tr><td className="td-label">Pagamento</td><td>IA conduz até a decisão e gera link de pagamento automático via InfinitePay (API POST /links). Pix gratuito + cartão até 12x. Webhook confirma pagamento em tempo real.</td></tr>
+            <tr><td className="td-label">Pagamento</td><td>IA gera link de pagamento automático via InfinityPay (API POST /links). Pix gratuito + cartão até 12x. Webhook confirma pagamento em tempo real e atualiza status no CRM.</td></tr>
           </tbody>
         </table>
       </div>
