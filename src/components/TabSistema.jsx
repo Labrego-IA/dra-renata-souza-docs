@@ -187,8 +187,13 @@ const conversationFlow = [
         title: 'Objeção de tempo/agenda',
         detail: 'Oferecer flexibilidade de horários. Mencionar que a avaliação dura aproximadamente 2 horas e que, dependendo do caso, o procedimento pode ser feito no mesmo dia.',
       },
+      {
+        passo: '4.8',
+        title: 'Entender motivo de não fechamento',
+        detail: 'Se o paciente indicar que não vai prosseguir, a IA pergunta de forma empática o motivo: "[Nome], sem problema nenhum! Posso te perguntar o que te fez decidir assim? É só para eu entender melhor." Com base na resposta, a IA identifica a objeção real (preço, medo, momento, já fez em outro lugar, etc.), tenta endereçar uma última vez com argumento específico, e se ainda assim não converter, registra o motivo no CRM para análise.',
+      },
     ],
-    dataStored: ['objeções levantadas pelo paciente', 'tipo de objeção (preço/medo/recuperação/tempo)', 'como cada objeção foi tratada', 'se o paciente aceitou a condição ou manteve resistência', 'faixa de preço informada'],
+    dataStored: ['objeções levantadas pelo paciente', 'tipo de objeção (preço/medo/recuperação/tempo)', 'como cada objeção foi tratada', 'se o paciente aceitou a condição ou manteve resistência', 'faixa de preço informada', 'motivo de não fechamento (se desistiu)'],
     dialogExample: {
       context: 'Paciente pergunta "quanto custa a rinomodelação?" logo na segunda mensagem',
       iaResponse: '"[Nome], o investimento varia de acordo com cada caso porque cada nariz tem suas particularidades. Antes de falar sobre valores, me conta: o que mais te incomoda no seu nariz? Assim consigo te dar informações mais precisas e te mostrar resultados de pacientes com casos parecidos com o seu."',

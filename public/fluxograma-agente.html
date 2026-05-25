@@ -689,14 +689,25 @@ flowchart TD
     F --> H
     G --> H
     H -->|"Sim"| D
-    H -->|"N&atilde;o &mdash; quer pensar"| I["&#128308; Classificar MORNO\nIr para Etapa 6"]
+    H -->|"N&atilde;o &mdash; quer pensar"| I["&#128172; Perguntar motivo:\n'Posso saber o que te\nfez decidir assim?'"]
+    I --> I2{"Motivo\nidentificado?"}
+    I2 -->|"Pre&ccedil;o"| I3["&#128161; Argumento: ROF\nou desconto na avalia&ccedil;&atilde;o"]
+    I2 -->|"Medo"| I4["&#128161; Argumento: depoimentos\n+ avatar facial"]
+    I2 -->|"Momento / Outro"| I5["&#128221; Registrar motivo\nno CRM"]
+    I3 --> I6{"Converteu?"}
+    I4 --> I6
+    I6 -->|"Sim"| D
+    I6 -->|"N&atilde;o"| I5
+    I5 --> I7["&#128308; Classificar MORNO\nIr para Etapa 6"]
 
     click D href "#etapa-5"
-    click I href "#etapa-6"
+    click I7 href "#etapa-6"
 
     style A fill:#9c46e0,stroke:#7c3aed,color:#fff
     style D fill:#9c46e0,stroke:#7c3aed,color:#fff
-    style I fill:#fffbeb,stroke:#f59e0b,color:#92400e
+    style I fill:#fff7ed,stroke:#d97706,color:#92400e
+    style I5 fill:#f1f5f9,stroke:#64748b,color:#334155
+    style I7 fill:#fffbeb,stroke:#f59e0b,color:#92400e
       </pre>
     </div>
   </div>
