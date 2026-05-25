@@ -345,6 +345,11 @@ const parallelProcesses = [
     iaAction: '"Claro, [Nome]! Vou transferir você para nossa equipe agora mesmo. Um momento!" + notificação no dashboard + contexto completo da conversa é salvo para o atendente.',
   },
   {
+    title: 'Inatividade de 7 horas (conversa sem encerramento)',
+    description: 'Se o paciente parar de responder por 7 horas durante uma conversa ativa que não teve encerramento (ficou "no ar"), a IA envia um check-in. Se a conversa já foi finalizada/encerrada, NÃO envia — vai direto para o follow-up normal.',
+    iaAction: '"[Nome], ainda está por aí? Quer continuar nossa conversa ou prefere que eu encerre o atendimento por enquanto?" Se responde "continuar": retomar de onde parou. Se responde "encerrar": despedida cordial + classificar como morno + ativar follow-up. Se não responde em mais 24h: encerrar automaticamente e iniciar follow-up D+3.',
+  },
+  {
     title: 'Paciente retorna após inatividade',
     description: 'Se o paciente parou de responder e volta dias ou semanas depois, a IA detecta o retorno e retoma com contexto.',
     iaAction: '"Oi, [Nome]! Que bom te ver de volta. Da última vez, você tinha interesse em [procedimento] e conversamos sobre [dor específica]. Quer retomar de onde paramos?"',

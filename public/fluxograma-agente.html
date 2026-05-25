@@ -460,7 +460,8 @@
     <span class="header-nav-label" style="margin-left: 8px;">Paralelos:</span>
     <a href="#paralelo-a" title="Perguntas">A</a>
     <a href="#paralelo-b" title="Humano">B</a>
-    <a href="#paralelo-c" title="Retorno">C</a>
+    <a href="#paralelo-c" title="Inatividade 7h">C</a>
+    <a href="#paralelo-d" title="Follow-up">D</a>
   </div>
 </div>
 
@@ -899,12 +900,41 @@ flowchart LR
     </div>
   </div>
 
-  <!-- PARALELO C -->
+  <!-- PARALELO C — INATIVIDADE 7H -->
   <div class="etapa-card" id="paralelo-c">
     <div class="etapa-card-header">
-      <div class="etapa-card-num" style="background: #8b5cf6;">C</div>
+      <div class="etapa-card-num" style="background: #d97706;">C</div>
       <div class="etapa-card-info">
-        <h3>Paciente Retorna Ap&oacute;s Inatividade</h3>
+        <h3>Inatividade de 7 Horas (Conversa Sem Encerramento)</h3>
+        <p>Se a conversa ficou &ldquo;no ar&rdquo; sem finaliza&ccedil;&atilde;o, check-in ap&oacute;s 7h. Se j&aacute; encerrou, N&Atilde;O envia.</p>
+      </div>
+    </div>
+    <div class="etapa-card-body">
+      <pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#d97706', 'primaryTextColor': '#fff', 'primaryBorderColor': '#b45309', 'lineColor': '#d97706', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
+flowchart TD
+    A{"&#9200; 7 horas sem\nresposta?"} -->|"Conversa j&aacute;\nfoi encerrada"| B["&#9989; N&Atilde;O enviar\n&mdash; ir para follow-up\nnormal D+3"]
+    A -->|"Conversa ficou\naberta sem encerramento"| C["&#128172; Check-in:\n'[Nome], ainda est&aacute;\npor a&iacute;? Quer continuar\nou encerrar?'"]
+    C --> D{"Resposta?"}
+    D -->|"Quer continuar"| E["&#128260; Retomar conversa\nde onde parou\ncom contexto completo"]
+    D -->|"Quer encerrar"| F["&#128075; Despedida cordial\nClassificar MORNO\nAtivar follow-up"]
+    D -->|"Sem resposta\n(mais 24h)"| G["&#128197; Encerrar conversa\nautomaticamente\nIniciar follow-up D+3"]
+
+    style A fill:#d97706,stroke:#b45309,color:#fff
+    style B fill:#dcfce7,stroke:#16a34a,color:#166534
+    style E fill:#dcfce7,stroke:#16a34a,color:#166534
+    style F fill:#fffbeb,stroke:#f59e0b,color:#92400e
+    style G fill:#fffbeb,stroke:#f59e0b,color:#92400e
+      </pre>
+    </div>
+  </div>
+
+  <!-- PARALELO D — FOLLOW-UP -->
+  <div class="etapa-card" id="paralelo-d">
+    <div class="etapa-card-header">
+      <div class="etapa-card-num" style="background: #8b5cf6;">D</div>
+      <div class="etapa-card-info">
+        <h3>Follow-up Autom&aacute;tico</h3>
         <p>Sequ&ecirc;ncia de follow-up: D+3, D+7, D+20, D+30, D+60</p>
       </div>
     </div>
