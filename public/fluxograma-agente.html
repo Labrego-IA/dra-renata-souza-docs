@@ -526,11 +526,14 @@ flowchart TD
     B -->|"&#127909; V&iacute;deo"| F["N&atilde;o processa v&iacute;deo\n&mdash; pedir texto ou &aacute;udio"]
     B -->|"&#127775; Sticker"| G["Ignorar sticker\n&mdash; registro passivo"]
     D --> D2{"Transcri&ccedil;&atilde;o\nOK?"}
-    D2 -->|"Sim"| C
+    D2 -->|"Sim"| D4["&#127908; Marcar prefer&ecirc;ncia: &aacute;udio\n&mdash; IA responde em &aacute;udio\nvia Text-to-Speech"]
+    D4 --> C
     D2 -->|"Falhou"| D3["Pedir que envie\npor texto"]
     D3 --> C
     E --> H
     C --> H{"&#9200; Hor&aacute;rio\ncomercial?"}
+
+    style D4 fill:#f3e8ff,stroke:#9c46e0,color:#581c87
     G --> H
     H -->|"8h &agrave;s 17h30"| I["&#9989; flag = true\nAtendimento normal"]
     H -->|"Fora do hor&aacute;rio"| J["&#128336; flag = false\nIA responde 24/7"]
