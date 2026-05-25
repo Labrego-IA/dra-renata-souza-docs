@@ -452,7 +452,7 @@
     <a href="#etapa-0" title="Recep&ccedil;&atilde;o">0</a>
     <a href="#etapa-1" title="Identifica&ccedil;&atilde;o">1</a>
     <a href="#etapa-2" title="Sauda&ccedil;&atilde;o">2</a>
-    <a href="#etapa-3" title="Prova Social">3</a>
+    <a href="#etapa-3" title="Diferenciais + Prova Social">3</a>
     <a href="#etapa-4" title="Condi&ccedil;&otilde;es">4</a>
     <a href="#etapa-5" title="Agendamento">5</a>
     <a href="#etapa-6" title="Classifica&ccedil;&atilde;o">6</a>
@@ -483,7 +483,7 @@
       <div class="macro-arrow">&rarr;</div>
       <div class="macro-step"><a href="#etapa-2"><div class="macro-circle" style="background: #607cf9;">2</div><div class="macro-label">Sauda&ccedil;&atilde;o e Dor</div></a></div>
       <div class="macro-arrow">&rarr;</div>
-      <div class="macro-step"><a href="#etapa-3"><div class="macro-circle" style="background: #9c46e0;">3</div><div class="macro-label">Prova Social</div></a></div>
+      <div class="macro-step"><a href="#etapa-3"><div class="macro-circle" style="background: #9c46e0;">3</div><div class="macro-label">Diferenciais + Prova</div></a></div>
       <div class="macro-arrow">&rarr;</div>
       <div class="macro-step"><a href="#etapa-4"><div class="macro-circle" style="background: #9c46e0;">4</div><div class="macro-label">Condi&ccedil;&otilde;es</div></a></div>
       <div class="macro-arrow">&rarr;</div>
@@ -501,6 +501,7 @@
     <div class="legend-item"><div class="legend-dot" style="background: #ef4444;"></div>Lead Quente</div>
     <div class="legend-item"><div class="legend-dot" style="background: #f59e0b;"></div>Lead Morno</div>
     <div class="legend-item"><div class="legend-dot" style="background: #3b82f6;"></div>Lead Frio</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #64748b;"></div>Lead Morto</div>
     <div class="legend-item"><div class="legend-dot" style="background: #22c55e;"></div>Finaliza&ccedil;&atilde;o / Clic&aacute;vel</div>
     <div class="legend-item"><div class="legend-dot" style="background: #fb923c;"></div>Processo Paralelo</div>
   </div>
@@ -630,31 +631,32 @@ flowchart TD
     <div class="etapa-card-header">
       <div class="etapa-card-num" style="background: #9c46e0;">3</div>
       <div class="etapa-card-info">
-        <h3>Constru&ccedil;&atilde;o de Valor (Prova Social)</h3>
-        <p>Antes/depois contextualizados, depoimentos e diferenciais da Dra. Renata</p>
+        <h3>Diferenciais e Prova Social</h3>
+        <p>Primeiro diferenciais da Dra. Renata (especialidade + avatar), depois provas sociais contextualizadas</p>
       </div>
     </div>
     <div class="etapa-card-body">
       <pre class="mermaid">
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#9c46e0', 'primaryTextColor': '#fff', 'primaryBorderColor': '#7c3aed', 'lineColor': '#9c46e0', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
 flowchart TD
-    A["&#128270; Selecionar fotos\nantes/depois que combinem\ncom a queixa do paciente"] --> B{"Queixa\nmapeada?"}
-    B -->|"Giba / Nariz"| C["&#128247; 2-3 fotos de\nrinomodeliza&ccedil;&atilde;o"]
-    B -->|"Olheiras"| D["&#128247; 2-3 fotos de\npreenchimento de olheiras"]
-    B -->|"L&aacute;bios"| E["&#128247; 2-3 fotos de\npreenchimento labial"]
-    B -->|"Botox / Full face"| F["&#128247; 2-3 fotos de\nharmoniza&ccedil;&atilde;o facial"]
-    C --> G["&#128172; Enviar fotos com\ncontexto: NUNCA no in&iacute;cio,\nAPENAS ap&oacute;s entender a dor"]
-    D --> G
-    E --> G
-    F --> G
-    G --> H["&#11088; Enviar depoimentos\nde pacientes reais\nrelacionados ao caso"]
-    H --> I["&#128105;&#8205;&#9877;&#65039; Explicar especializa&ccedil;&atilde;o\ne diferenciais da\nDra. Renata Souza"]
+    A["&#128105;&#8205;&#9877;&#65039; Apresentar especializa&ccedil;&atilde;o\ne diferenciais da\nDra. Renata Souza"] --> B["&#127912; Mencionar avatar facial\n&mdash; simula&ccedil;&atilde;o do resultado\nno rosto do paciente"]
+    B --> C{"Queixa\nmapeada?"}
+    C -->|"Giba / Nariz"| D["&#128247; 2-3 fotos de\nrinomodeliza&ccedil;&atilde;o"]
+    C -->|"Olheiras"| E["&#128247; 2-3 fotos de\npreenchimento de olheiras"]
+    C -->|"L&aacute;bios"| F["&#128247; 2-3 fotos de\npreenchimento labial"]
+    C -->|"Botox / Full face"| G["&#128247; 2-3 fotos de\nharmoniza&ccedil;&atilde;o facial"]
+    D --> H["&#128172; Enviar fotos com\ncontexto personalizado\n&mdash; caso similar ao paciente"]
+    E --> H
+    F --> H
+    G --> H
+    H --> I["&#11088; Enviar depoimentos\nde pacientes reais\nrelacionados ao caso"]
     I --> J["&#128293; Construir desejo\nANTES de mencionar pre&ccedil;o"]
     J --> K["&#10145;&#65039; Ir para Etapa 4"]
 
     click K href "#etapa-4"
 
     style A fill:#9c46e0,stroke:#7c3aed,color:#fff
+    style B fill:#f3e8ff,stroke:#9c46e0,color:#581c87
     style K fill:#9c46e0,stroke:#7c3aed,color:#fff
     style J fill:#fef2f2,stroke:#ef4444,color:#991b1b
       </pre>
@@ -667,14 +669,14 @@ flowchart TD
       <div class="etapa-card-num" style="background: #9c46e0;">4</div>
       <div class="etapa-card-info">
         <h3>Apresenta&ccedil;&atilde;o de Condi&ccedil;&otilde;es</h3>
-        <p>Avalia&ccedil;&atilde;o presencial ou online, pre&ccedil;o R$350, simula&ccedil;&atilde;o com avatar facial</p>
+        <p>Avalia&ccedil;&atilde;o presencial R$350 ou online R$150, simula&ccedil;&atilde;o com avatar facial</p>
       </div>
     </div>
     <div class="etapa-card-body">
       <pre class="mermaid">
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#9c46e0', 'primaryTextColor': '#fff', 'primaryBorderColor': '#7c3aed', 'lineColor': '#9c46e0', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
 flowchart TD
-    A["&#128203; Explicar avalia&ccedil;&atilde;o\npresencial ou online\n+ simula&ccedil;&atilde;o com avatar facial"] --> B["&#128176; Apresentar valor:\nAvalia&ccedil;&atilde;o R$350\n&mdash; s&oacute; agenda ap&oacute;s pagamento"]
+    A["&#128203; Explicar avalia&ccedil;&atilde;o\npresencial ou online\n+ simula&ccedil;&atilde;o com avatar facial"] --> B["&#128176; Apresentar valor:\nPresencial R$350 / Online R$150\n&mdash; s&oacute; agenda ap&oacute;s pagamento"]
     B --> C{"&#128172; Rea&ccedil;&atilde;o do\npaciente?"}
     C -->|"OK / Aceita"| D["&#10145;&#65039; Ir para Etapa 5"]
     C -->|"Pergunta pre&ccedil;o\ndo procedimento"| E["&#128172; 'A Dra. Renata vai\ndetalhar na avalia&ccedil;&atilde;o,\npois depende do seu caso'"]
@@ -714,7 +716,7 @@ flowchart TD
     B -->|"Online"| D["&#128187; Agendar avalia&ccedil;&atilde;o\nonline por v&iacute;deo"]
     C --> E["&#128203; Enviar formul&aacute;rio\nde pr&eacute;-cadastro\nautomaticamente"]
     D --> E
-    E --> F["&#128176; Gerar link de pagamento\nvia InfinitePay (Pix ou cart&atilde;o)\n&mdash; enviar direto na conversa"]
+    E --> F["&#128176; Gerar link de pagamento\nvia InfinityPay (Pix ou cart&atilde;o 12x)\n&mdash; enviar direto na conversa"]
     F --> G{"Pagamento\nconfirmado?"}
     G -->|"Sim"| H["&#9989; Mover lead para\n'Agendou' no pipeline"]
     G -->|"N&atilde;o &mdash; n&atilde;o pagou"| I["&#128336; Lembrete de pagamento\nap&oacute;s 24h"]
@@ -741,7 +743,7 @@ flowchart TD
       <div class="etapa-card-num" style="background: #ef4444;">6</div>
       <div class="etapa-card-info">
         <h3>Classifica&ccedil;&atilde;o e Encaminhamento</h3>
-        <p>3 classifica&ccedil;&otilde;es com a&ccedil;&otilde;es autom&aacute;ticas distintas no CRM</p>
+        <p>4 classifica&ccedil;&otilde;es (quente/morno/frio/morto) + ROF + motivo de n&atilde;o fechamento</p>
       </div>
     </div>
     <div class="etapa-card-body">
@@ -751,20 +753,28 @@ flowchart TD
     A{"&#128202; Classifica&ccedil;&atilde;o\ndo lead?"} -->|"Interessado + aceitou avalia&ccedil;&atilde;o\n+ link de pagamento enviado"| Q["&#128308; QUENTE"]
     A -->|"Interessado mas hesitante,\nquer pensar, n&atilde;o fechou"| M["&#128992; MORNO"]
     A -->|"Sem interesse ap&oacute;s\n2 tentativas"| F["&#128309; FRIO"]
+    A -->|"Sem resposta ap&oacute;s\ntoda sequ&ecirc;ncia de follow-up"| D["&#9899; MORTO"]
 
     Q --> QA["&#128241; Notificar humano\nimediatamente\n&#128190; Mover card no CRM\npara 'Link Enviado'"]
-    M --> MA["&#128197; Ativar sequ&ecirc;ncia\nde follow-up\n&#128190; Mover card para\n'Em Nutri&ccedil;&atilde;o'"]
+    M --> MB{"Barreira\nfinanceira?"}
+    MB -->|"Sim"| MR["&#127891; Oferecer ROF\n(paciente-modelo)\nInvestimento menor"]
+    MB -->|"N&atilde;o"| MA["&#128197; Ativar sequ&ecirc;ncia\nde follow-up\n&#128190; Mover card para\n'Em Nutri&ccedil;&atilde;o'"]
     F --> FA["&#128197; Agendar reengajamento\nD+3, D+7\n&#128190; Mover card para\n'Reengajamento'"]
+    D --> DA["&#128221; Registrar motivo\nde n&atilde;o fechamento\n&#128190; Encerrar lead"]
 
     QA --> Z["&#10145;&#65039; Ir para Etapa 7"]
+    MR --> Z
     MA --> Z
     FA --> Z
+    DA --> Z
 
     click Z href "#etapa-7"
 
     style Q fill:#fef2f2,stroke:#ef4444,color:#991b1b
     style M fill:#fffbeb,stroke:#f59e0b,color:#92400e
     style F fill:#eff6ff,stroke:#3b82f6,color:#1e40af
+    style D fill:#f1f5f9,stroke:#64748b,color:#334155
+    style MR fill:#f3e8ff,stroke:#9c46e0,color:#581c87
     style Z fill:#22c55e,stroke:#16a34a,color:#fff
       </pre>
     </div>
@@ -889,8 +899,8 @@ flowchart LR
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#8b5cf6', 'primaryTextColor': '#fff', 'primaryBorderColor': '#7c3aed', 'lineColor': '#8b5cf6', 'secondaryColor': '#e8e8f0', 'fontSize': '15px', 'fontFamily': 'Inter', 'edgeLabelBackground': 'transparent'}}}%%
 flowchart TD
     A["&#128260; Follow-up\nautom&aacute;tico"] --> B{"Tempo de\ninatividade?"}
-    B -->|"D+3"| C["&#128172; 1&ordm; follow-up\n&acirc;ngulo diferente,\nchamar pelo nome,\nreferenciar a dor"]
-    B -->|"D+7"| D["&#128247; 2&ordm; follow-up\nformato alternado\n(&aacute;udio/texto/foto)\nnovo conte&uacute;do"]
+    B -->|"D+3"| C["&#128172; 1&ordm; follow-up\n&acirc;ngulo diferente,\nchamar pelo nome,\nreferenciar a dor\n+ oferecer ROF se barreira financeira"]
+    B -->|"D+7"| D["&#127908; 2&ordm; follow-up\n&aacute;udio da Dra. Renata\nsobre o procedimento\n+ caso de sucesso"]
     B -->|"D+20"| E["&#11088; 3&ordm; follow-up\nnovo depoimento\nde paciente similar"]
     B -->|"D+30"| F["&#128161; 4&ordm; follow-up\nconte&uacute;do educativo\nsobre o procedimento"]
     B -->|"D+60"| G["&#128075; Mensagem final\n&mdash; fechar lead se\nsem resposta"]
@@ -924,7 +934,7 @@ flowchart TD
       <div class="etapa-card-num" style="background: #1e293b;">S</div>
       <div class="etapa-card-info">
         <h3>Diagrama de Arquitetura</h3>
-        <p>8 sistemas integrados: WhatsApp, IA, CRM, Base de Conhecimento, STT, Calendar, InfinitePay, Notifica&ccedil;&otilde;es</p>
+        <p>8 sistemas integrados: WhatsApp, IA, CRM, Base de Conhecimento, STT, Calendar, InfinityPay, Notifica&ccedil;&otilde;es</p>
       </div>
     </div>
     <div class="etapa-card-body">
@@ -939,7 +949,7 @@ flowchart TB
     MOTOR <-->|"consulta"| KB["&#128218; Base de Conhecimento\nprocedimentos, antes/depois,\ndepoimentos, FAQs"]
     MOTOR <-->|"CRUD"| CRM["&#128190; CRM / Banco de Dados\ncontatos, leads,\nhist&oacute;rico, pipeline"]
     MOTOR <-->|"disponibilidade"| CALENDAR["&#128197; Google Calendar\nagenda da Dra. Renata"]
-    MOTOR <-->|"pagamento"| INFINITEPAY["&#128176; InfinitePay API\nPix + Cart&atilde;o at&eacute; 12x\nwebhook confirma&ccedil;&atilde;o"]
+    MOTOR <-->|"pagamento"| INFINITEPAY["&#128176; InfinityPay API\nPix + Cart&atilde;o at&eacute; 12x\nwebhook confirma&ccedil;&atilde;o"]
 
     CRM -->|"alerts"| NOTIF["&#128276; Notifica&ccedil;&otilde;es"]
     NOTIF --> ATENDENTE["&#128105;&#8205;&#9877;&#65039; WhatsApp\nAtendente"]
